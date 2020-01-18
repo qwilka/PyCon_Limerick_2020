@@ -1,0 +1,125 @@
+https://github.com/PyConLimerick/Limerick2020/blob/master/03_Tentative_Speaker_List.md
+
+bookdown::render_book('2019_PyConIE_pflacs.Rmd', 'beamer_presentation')
+bookdown::render_book('index.Rmd', 'xaringan::moon_reader')
+
+
+Rmarkdown
+===========
+https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-RStudio#templates
+https://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
+https://yihui.org/knitr/options/  help on knitr options
+https://github.com/yihui/xaringan
+https://bookdown.org/yihui/rmarkdown/xaringan.html
+
+go-byes
+-------
+https://slides.yihui.org/xaringan/#1
+https://slides.yihui.org/xaringan/incremental.html
+https://remarkjs.com/#1
+https://arm.rbind.io/days/day1/xaringan/
+https://garthtarr.github.io/sydney_xaringan/#44
+
+
+knitr
+=====
+https://github.com/yihui/knitr
+https://yihui.org/knitr/
+https://sachsmc.github.io/knit-git-markr-guide/knitr/knit.html
+https://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
+https://github.com/yihui/knitr/issues/1197   prompts for python code
+ 
+
+
+trees
+======
+https://github.com/christophM/overview-ctrees   conditional inference tree
+https://stats.stackexchange.com/questions/12140/conditional-inference-trees-vs-traditional-decision-trees
+https://eeecon.uibk.ac.at/~zeileis/publications/papers/
+https://eeecon.uibk.ac.at/~zeileis/papers/Hothorn+Hornik+Zeileis-2006.pdf
+Torsten Hothorn, Kurt Hornik, Achim Zeileis (2006). “Unbiased Recursive Partitioning: A Conditional Inference Framework.” Journal of Computational and Graphical Statistics, 15(3), 651-674. 
+
+https://en.wikipedia.org/wiki/Mind_map
+
+AST
+===
+https://pyvideo.org/pycon-us-2018/the-ast-and-me.html
+
+
+
+
+
+
+----------------------------------------------------------
+```{python, echo=FALSE, results='hide', engine.path='/home/develop/local/anaconda3/envs/py3/bin/python'}
+from math import *
+sqrt(4)
+```
+
+
+```{python, echo=FALSE, results='hide', engine.path='/home/develop/local/anaconda3/envs/py3/bin/python'}
+from math import *
+sqrt(4)
+```
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+def subx(x, y, z=0):
+  print(f"«subx» w/args x={x} y={y}", end="")
+  print(f" z={z}") if z else print()
+  return x - y - z
+```
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+result = subx(c, s)
+print(f"result = {result}")
+```
+
+
+
+
+----------------------------------------------
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(knitr)
+```
+
+this is dummy
+
+---
+
+# Python code 1
+
+This is page 2.
+
+```{python, echo=FALSE, results='hide', engine.path='/usr/bin/python3'}
+from math import *
+```
+
+```{python}
+s = sin(pi/4)
+print("This is Page 2")
+```
+
+```{python}
+print("sin(pi/4) = ", s)
+```
+
+
+
+End of page 2.
+
+
+---
+
+# Python code 2
+
+
+Start of page 3.
+
+
+```{python}
+print("This is Page 3")
+```
+
+
+

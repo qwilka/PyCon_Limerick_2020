@@ -1,0 +1,81 @@
+---
+title: "Trees for structure and support in Python"
+subtitle: "tree data structures"
+author: "Stephen McEntee"
+institute: "testing"
+date: "2020-02-29"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, metropolis, metropolis-fonts]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(knitr)
+```
+
+# The first page
+
+this is dummy
+
+---
+
+# Python code 1
+
+This is page 2.
+
+```{python, echo=FALSE, results='hide', engine.path='/home/develop/local/anaconda3/envs/py3/bin/python'}
+from math import *
+sqrt(4)
+```
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+s = sin(pi/4)
+c = cos(pi/4)
+print("This is Page 2")
+```
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+print("sin(pi/4) = ", s)
+```
+
+
+
+End of page 2.
+
+
+---
+
+# Python code 2
+
+
+Start of page 3.
+
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+print("This is Page 3")
+```
+
+---
+
+# Python code 3
+
+Start of page 5
+
+```{python}
+def subx(x, y, z=0):
+  print(f"«subx» w/args x={x} y={y}", end="")
+  print(f" z={z}") if z else print()
+  return x - y - z
+```
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+result = subx(c, s)
+print(f"result = {result}")
+```
+
