@@ -18,7 +18,7 @@ https://slides.yihui.org/xaringan/#1
 https://slides.yihui.org/xaringan/incremental.html
 https://remarkjs.com/#1
 https://arm.rbind.io/days/day1/xaringan/
-https://garthtarr.github.io/sydney_xaringan/#44
+https://garthtarr.github.io/sydney_xaringan/#44  
 
 
 knitr
@@ -28,6 +28,11 @@ https://yihui.org/knitr/
 https://sachsmc.github.io/knit-git-markr-guide/knitr/knit.html
 https://kbroman.org/knitr_knutshell/pages/Rmarkdown.html
 https://github.com/yihui/knitr/issues/1197   prompts for python code
+
+git
+===
+git remote -v
+git remote set-url origin git@github.com:qwilka/PyCon_Limerick_2020.git
  
 
 
@@ -39,6 +44,7 @@ https://eeecon.uibk.ac.at/~zeileis/publications/papers/
 https://eeecon.uibk.ac.at/~zeileis/papers/Hothorn+Hornik+Zeileis-2006.pdf
 Torsten Hothorn, Kurt Hornik, Achim Zeileis (2006). “Unbiased Recursive Partitioning: A Conditional Inference Framework.” Journal of Computational and Graphical Statistics, 15(3), 651-674. 
 
+
 https://en.wikipedia.org/wiki/Mind_map
 
 AST
@@ -47,79 +53,43 @@ https://pyvideo.org/pycon-us-2018/the-ast-and-me.html
 
 
 
+Python
+=======
+https://www.python.org/doc/essays/graphs/  Python Patterns - Implementing Graphs 2000
+https://python-patterns.guide/  monkey patch
+https://machinelearningmastery.com/implement-decision-tree-algorithm-scratch-python/
+https://stackoverflow.com/questions/2598437/how-to-implement-a-binary-tree
+https://python-3-patterns-idioms-test.readthedocs.io/en/latest/PatternConcept.html
+https://stackoverflow.com/questions/3009935/looking-for-a-good-python-tree-data-structure
+http://openbookproject.net/thinkcs/python/english2e/ch21.html  How to Think Like a Computer Scientist: Learning with Python 2nd Ed   21. Trees
 
 
+Python variables
+----------------
+https://jakevdp.github.io/WhirlwindTourOfPython/03-semantics-variables.html
+https://stackoverflow.com/questions/1538342/how-can-i-get-the-name-of-an-object-in-python
+https://realpython.com/python-variables/
 
-----------------------------------------------------------
-```{python, echo=FALSE, results='hide', engine.path='/home/develop/local/anaconda3/envs/py3/bin/python'}
-from math import *
-sqrt(4)
-```
+Python trees
+-------------
+https://github.com/SiggiGue/qdictionarytree  
 
-
-```{python, echo=FALSE, results='hide', engine.path='/home/develop/local/anaconda3/envs/py3/bin/python'}
-from math import *
-sqrt(4)
-```
-
-```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-def subx(x, y, z=0):
-  print(f"«subx» w/args x={x} y={y}", end="")
-  print(f" z={z}") if z else print()
-  return x - y - z
-```
-
-```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-result = subx(c, s)
-print(f"result = {result}")
-```
+decision trees
+==============
+https://machinelearningmastery.com/implement-decision-tree-algorithm-scratch-python/
+https://www.analyticsvidhya.com/blog/2016/04/complete-tutorial-tree-based-modeling-scratch-in-python/
 
 
+tutorials
+=========
+https://www.youtube.com/view_play_list?p=8B63F2091D787896   tutorial Series on  PyQt4 MVC
 
 
-----------------------------------------------
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-library(knitr)
-```
-
-this is dummy
-
----
-
-# Python code 1
-
-This is page 2.
-
-```{python, echo=FALSE, results='hide', engine.path='/usr/bin/python3'}
-from math import *
-```
-
-```{python}
-s = sin(pi/4)
-print("This is Page 2")
-```
-
-```{python}
-print("sin(pi/4) = ", s)
-```
+Javascript
+==========
+https://github.com/ShieldBattery/node-interval-tree
 
 
-
-End of page 2.
-
-
----
-
-# Python code 2
-
-
-Start of page 3.
-
-
-```{python}
-print("This is Page 3")
-```
-
-
-
+licences
+========
+https://softwareengineering.stackexchange.com/questions/264968/can-a-single-github-repository-include-source-code-released-under-multiple-licen

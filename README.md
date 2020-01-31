@@ -7,4 +7,4 @@ Tree data structures are pervasive in computing, they enable us to organise info
 
 
 
-https://qwilka.github.io/2020_PyCon_Limerick/
+https://qwilka.github.io/PyCon_Limerick_2020/
