@@ -1,16 +1,19 @@
 """
-Copyright © 2015 Qwilka Ltd. All rights reserved.
-Any unauthorised copying or distribution is strictly prohibited.
-Author: Stephen McEntee <stephenmce@gmail.com> 
+Copyright © 2020 Stephen McEntee
+Licensed under the MIT license. 
+https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/LICENSE
 """
 import logging
 logger = logging.getLogger(__name__)
 from PyQt5.QtCore import QAbstractItemModel, QModelIndex, Qt
 
 
-if __name__ != "__main__":
-    from .nodes import Node, VnNode
-    from .file_system_tree import fstree_from_JSON
+# if __name__ != "__main__":
+#     from .nodes import Node, VnNode
+#     from .file_system_tree import fstree_from_JSON
+
+from nodes import Node, VnNode
+from file_system_tree import fstree_from_JSON
 
 
 class TreeModel(QAbstractItemModel):

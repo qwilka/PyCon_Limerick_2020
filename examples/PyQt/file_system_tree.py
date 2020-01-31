@@ -1,7 +1,7 @@
 """
-Copyright © 2015 Qwilka Ltd. All rights reserved.
-Any unauthorised copying or distribution is strictly prohibited.
-Author: Stephen McEntee <stephenmce@gmail.com> 
+Copyright © 2020 Stephen McEntee
+Licensed under the MIT license. 
+https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/LICENSE
 """
 import logging
 import fnmatch

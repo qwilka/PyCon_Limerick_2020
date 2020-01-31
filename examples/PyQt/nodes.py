@@ -1,7 +1,7 @@
 """
-Copyright © 2015 Qwilka Ltd. All rights reserved.
-Any unauthorised copying or distribution is strictly prohibited.
-Author: Stephen McEntee <stephenmce@gmail.com> 
+Copyright © 2020 Stephen McEntee
+Licensed under the MIT license. 
+https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/LICENSE
 """
 import itertools
 import json
@@ -312,8 +312,8 @@ def node_from_pathlist(rootnode, pathparts):
 
 
 if __name__ == '__main__':   # tests
-    import doctest
-    doctest.testmod(verbose=True, optionflags=doctest.ELLIPSIS)
+    # import doctest
+    # doctest.testmod(verbose=True, optionflags=doctest.ELLIPSIS)
 
     def test_setup_basic_Node_tree():
         rootnode   = Node("root (level0)")
@@ -390,7 +390,7 @@ if __name__ == '__main__':   # tests
     #print( test_setup_basic_Node_tree().to_texttree() )
     #for node in list(test_setup_basic_Node_tree()): print(node.name)
     #print( test_make_Node_tree_from_dictionary().to_texttree(printdata=30) )
-    #print(test_make_VnNode_tree_from_dictionary().to_texttree(printdata=True))  #printdata=True
+    print(test_make_VnNode_tree_from_dictionary().to_texttree(printdata=True))  #printdata=True
     #print(json.dumps( test_make_VnNode_tree_from_dictionary().to_vndict(), sort_keys=False, indent=2 ))
     #print(print_VnNode_tree_metadata())
 
