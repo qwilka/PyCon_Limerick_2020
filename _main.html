@@ -56,29 +56,97 @@ End of page 2.
 
 ---
 
-# Python code 2
+# A linked list in Python
 
+.pull-left[
+```python
+class LLnode:
+  def __init__(self, value, prev):
+    self.prev = prev
+    if prev:
+        prev.append(self)
+    self.next = () 
+    self.value = value
 
-Start of page 3.
+  def append(self, newnode):
+    self.next = newnode
+    return newnode 
 
+  def __iter__(self):
+      ...
+
+  def __reversed__(self):
+      ... 
+
+  def show_linked_list(self):
+      ... 
+```
+]
+
+--
+
+.pull-right[
+
+```python
+&gt;&gt;&gt; first = LLnode('First Node', None)
+&gt;&gt;&gt; sec = LLnode('Second Node', first)
+&gt;&gt;&gt; third = LLnode(3, sec)
+&gt;&gt;&gt; third.append( LLnode(4.0, None) )
+&lt;examples.linked_list.LLnode object at 0x7f9c833da750&gt;
+```
+{{content}}
+]
+
+--
 
 
 ```python
-&gt;&gt;&gt; print("This is Page 3")
-This is Page 3
+&gt;&gt;&gt; for node in first:
+&gt;&gt;&gt;     print(node.value)
+First Node
+Second Node
+3
+4.0
 ```
+{{content}}
+
+--
+
+
+```python
+&gt;&gt;&gt; for node in reversed(first):
+&gt;&gt;&gt;     print(node.value)
+4.0
+3
+Second Node
+First Node
+```
+{{content}}
+
+
+???
+
+### References
+
+1. https://en.wikipedia.org/wiki/Linked_list
+
 
 ---
 
-# Python code 3
-
-Start of page 5
+# Linked List - usage example
 
 
 ```python
-&gt;&gt;&gt; root = Node('Stephen Dedalus')
-&gt;&gt;&gt; _ = root.append(Node('Class of Elements')).append(Node('Clongowes Wood College')).append(Node('Sallins')).append(Node('County Kildare')).append(Node('Ireland')).append(Node('Europe')).append(Node('The World')).append(Node('The Universe'))
-&gt;&gt;&gt; root.to_text()
+&gt;&gt;&gt; root = LLnode('Stephen Dedalus', None)
+&gt;&gt;&gt; root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')).append(LLnode('Sallins')).append(LLnode('County Kildare')).append(LLnode('Ireland')).append(LLnode('Europe')).append(LLnode('The World')).append(LLnode('The Universe'))
+&lt;examples.linked_list.LLnode object at 0x7f9c833dbe10&gt;
+```
+
+--
+
+
+```python
+&gt;&gt;&gt; root.show_linked_list()
 |-- Stephen Dedalus
     +-&gt; Class of Elements
         +-&gt; Clongowes Wood College
@@ -89,6 +157,20 @@ Start of page 5
                             +-&gt; The World
                                 +-&gt; The Universe
 ```
+
+--
+
+- Linked lists and arrays are both 1-dimensional, ordered data structures. However, they could be regarded as occupying separate, orthogonal dimensions.
+
+--
+
+- An array could be regarded as occuping the 'horizontal' or 'width' dimension.
+
+--
+
+- A linked list could be regarded as occuping the 'vertical' or 'depth' dimension.
+
+
 
 
 &lt;!--chapter:end:index.Rmd--&gt;

@@ -32,7 +32,7 @@ This is page 2.
 ```{python, echo=FALSE, results='hide', engine.path='/home/develop/local/anaconda3/envs/py3/bin/python'}
 from math import *
 sqrt(4)
-from examples.linked_list import Node
+from examples.linked_list import LLnode
 ```
 
 ```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
@@ -51,25 +51,95 @@ End of page 2.
 
 ---
 
-# Python code 2
+# A linked list in Python
 
+.pull-left[
+```python
+class LLnode:
+  def __init__(self, value, prev):
+    self.prev = prev
+    if prev:
+        prev.append(self)
+    self.next = () 
+    self.value = value
 
-Start of page 3.
+  def append(self, newnode):
+    self.next = newnode
+    return newnode 
 
+  def __iter__(self):
+      ...
+
+  def __reversed__(self):
+      ... 
+
+  def show_linked_list(self):
+      ... 
+```
+]
+
+--
+
+.pull-right[
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+first = LLnode('First Node', None)
+sec = LLnode('Second Node', first)
+third = LLnode(3, sec)
+third.append( LLnode(4.0, None) )
+```
+{{content}}
+]
+
+--
 
 ```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-print("This is Page 3")
+for node in first:
+    print(node.value)
 ```
+{{content}}
+
+--
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+for node in reversed(first):
+    print(node.value)
+```
+{{content}}
+
+
+???
+
+### References
+
+1. https://en.wikipedia.org/wiki/Linked_list
+
 
 ---
 
-# Python code 3
-
-Start of page 5
+# Linked List - usage example
 
 ```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-root = Node('Stephen Dedalus')
-_ = root.append(Node('Class of Elements')).append(Node('Clongowes Wood College')).append(Node('Sallins')).append(Node('County Kildare')).append(Node('Ireland')).append(Node('Europe')).append(Node('The World')).append(Node('The Universe'))
-root.to_text()
+root = LLnode('Stephen Dedalus', None)
+root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')).append(LLnode('Sallins')).append(LLnode('County Kildare')).append(LLnode('Ireland')).append(LLnode('Europe')).append(LLnode('The World')).append(LLnode('The Universe'))
 ```
+
+--
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+root.show_linked_list()
+```
+
+--
+
+- Linked lists and arrays are both 1-dimensional, ordered data structures. However, they could be regarded as occupying separate, orthogonal dimensions.
+
+--
+
+- An array could be regarded as occuping the 'horizontal' or 'width' dimension.
+
+--
+
+- A linked list could be regarded as occuping the 'vertical' or 'depth' dimension.
+
+
 

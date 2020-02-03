@@ -12,13 +12,14 @@ https://yihui.org/knitr/options/  help on knitr options
 https://github.com/yihui/xaringan
 https://bookdown.org/yihui/rmarkdown/xaringan.html
 
-go-byes
+xaringan /  remark
 -------
 https://slides.yihui.org/xaringan/#1
 https://slides.yihui.org/xaringan/incremental.html
 https://remarkjs.com/#1
 https://arm.rbind.io/days/day1/xaringan/
 https://garthtarr.github.io/sydney_xaringan/#44  
+https://stackoverflow.com/questions/46408057/incremental-slides-do-not-work-with-a-two-column-layout
 
 
 knitr

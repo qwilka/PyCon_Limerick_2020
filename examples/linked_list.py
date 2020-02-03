@@ -1,21 +1,22 @@
 import itertools
 
-class Node:
-    """Node class for linked list data structure.  
-    Ref: https://en.wikipedia.org/wiki/Tree_(data_structure)
+class LLnode:
+    """Class for linked list data structure.  
+    Ref: https://en.wikipedia.org/wiki/Linked_list
     """
-    def __init__(self, name, previous=None, data=None):
-        self.name = name
-        if previous and isinstance(previous, Node):
-            previous.append(self)
+    def __init__(self, value, prev=None):
+        # self.prev = prev
+        # if prev: prev.append(self)
+        if prev and isinstance(prev, LLnode):
+            prev.append(self)
         else:
-            self.previous = None
+            self.prev = None
         self.next = ()   # iterable null value required to satisfy __iter__ protocol
-        self.data = data
+        self.value = value
 
     def append(self, newnode):
         self.next = newnode
-        newnode.previous = self
+        newnode.prev = self
         return newnode 
     
     def __iter__(self):
@@ -28,35 +29,38 @@ class Node:
             yield node
         yield self
 
-    def to_text(self, indent=2):
-        for ii, _n in enumerate(self):
+    def show_linked_list(self, display=True, indent=2):
+        for ii, node in enumerate(self):
             if ii==0:
-                stg = "|-- " + _n.name
+                stg = "|-- " + node.value
             else:
-                stg += "\n" + "  "*indent*ii + "+-> "  + _n.name
-        print(stg)
+                stg += "\n" + "  "*indent*ii + "+-> "  + node.value
+        if display:
+            print(stg)
+        else:
+            return stg
 
 
 if __name__ == '__main__':
-    if False:
-        first  = Node('First Node')
-        second = Node('Second Node', first)
-        third = Node('Third Node', second)
-        third.append(Node('Fourth Node'))
+    if True:
+        first  = LLnode('First Node')
+        second = LLnode('Second Node', first)
+        third = LLnode('Third Node', second)
+        third.append(LLnode('Fourth Node'))
         for n in first:
-            print(n.name)
+            print(n.value)
         for n in reversed(first):
-            print(n.name)
+            print(n.value)
     if True:
         # http://www.gutenberg.org/files/4217/4217-h/4217-h.htm
-        root = Node('Stephen Dedalus')
-        (root.append(Node('Class of Elements'))
-        .append(Node('Clongowes Wood College'))
-        .append(Node('Sallins'))
-        .append(Node('County Kildare')) 
-        .append(Node('Ireland'))
-        .append(Node('Europe'))
-        .append(Node('The World'))
-        .append(Node('The Universe'))
+        root = LLnode('Stephen Dedalus')
+        (root.append(LLnode('Class of Elements'))
+        .append(LLnode('Clongowes Wood College'))
+        .append(LLnode('Sallins'))
+        .append(LLnode('County Kildare')) 
+        .append(LLnode('Ireland'))
+        .append(LLnode('Europe'))
+        .append(LLnode('The World'))
+        .append(LLnode('The Universe'))
         )
-        root.to_text()
+        root.show_linked_list()
