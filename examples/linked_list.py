@@ -16,8 +16,8 @@ class Node:
     def append(self, newnode):
         self.next = newnode
         newnode.previous = self
-        return True 
-
+        return newnode 
+    
     def __iter__(self):
         yield self
         for node in itertools.chain(iter(self.next)):
@@ -28,13 +28,35 @@ class Node:
             yield node
         yield self
 
+    def to_text(self, indent=2):
+        for ii, _n in enumerate(self):
+            if ii==0:
+                stg = "|-- " + _n.name
+            else:
+                stg += "\n" + "  "*indent*ii + "+-> "  + _n.name
+        print(stg)
+
 
 if __name__ == '__main__':
-    first  = Node('First Node')
-    second = Node('Second Node', first)
-    third = Node('Third Node', second)
-    third.append(Node('Fourth Node'))
-    for n in first:
-        print(n.name)
-    for n in reversed(first):
-        print(n.name)
+    if False:
+        first  = Node('First Node')
+        second = Node('Second Node', first)
+        third = Node('Third Node', second)
+        third.append(Node('Fourth Node'))
+        for n in first:
+            print(n.name)
+        for n in reversed(first):
+            print(n.name)
+    if True:
+        # http://www.gutenberg.org/files/4217/4217-h/4217-h.htm
+        root = Node('Stephen Dedalus')
+        (root.append(Node('Class of Elements'))
+        .append(Node('Clongowes Wood College'))
+        .append(Node('Sallins'))
+        .append(Node('County Kildare')) 
+        .append(Node('Ireland'))
+        .append(Node('Europe'))
+        .append(Node('The World'))
+        .append(Node('The Universe'))
+        )
+        root.to_text()

@@ -51,7 +51,6 @@ sin(pi/4) =  0.7071067811865475
 ```
 
 
-
 End of page 2.
 
 
@@ -77,18 +76,18 @@ Start of page 5
 
 
 ```python
-def subx(x, y, z=0):
-  print(f"«subx» w/args x={x} y={y}", end="")
-  print(f" z={z}") if z else print()
-  return x - y - z
-```
-
-
-```python
-&gt;&gt;&gt; result = subx(c, s)
-«subx» w/args x=0.7071067811865476 y=0.7071067811865475
-&gt;&gt;&gt; print(f"result = {result}")
-result = 1.1102230246251565e-16
+&gt;&gt;&gt; root = Node('Stephen Dedalus')
+&gt;&gt;&gt; _ = root.append(Node('Class of Elements')).append(Node('Clongowes Wood College')).append(Node('Sallins')).append(Node('County Kildare')).append(Node('Ireland')).append(Node('Europe')).append(Node('The World')).append(Node('The Universe'))
+&gt;&gt;&gt; root.to_text()
+|-- Stephen Dedalus
+    +-&gt; Class of Elements
+        +-&gt; Clongowes Wood College
+            +-&gt; Sallins
+                +-&gt; County Kildare
+                    +-&gt; Ireland
+                        +-&gt; Europe
+                            +-&gt; The World
+                                +-&gt; The Universe
 ```
 
 

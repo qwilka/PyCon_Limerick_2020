@@ -32,6 +32,7 @@ This is page 2.
 ```{python, echo=FALSE, results='hide', engine.path='/home/develop/local/anaconda3/envs/py3/bin/python'}
 from math import *
 sqrt(4)
+from examples.linked_list import Node
 ```
 
 ```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
@@ -43,7 +44,6 @@ print("This is Page 2")
 ```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
 print("sin(pi/4) = ", s)
 ```
-
 
 
 End of page 2.
@@ -67,15 +67,9 @@ print("This is Page 3")
 
 Start of page 5
 
-```{python}
-def subx(x, y, z=0):
-  print(f"«subx» w/args x={x} y={y}", end="")
-  print(f" z={z}") if z else print()
-  return x - y - z
-```
-
 ```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-result = subx(c, s)
-print(f"result = {result}")
+root = Node('Stephen Dedalus')
+_ = root.append(Node('Class of Elements')).append(Node('Clongowes Wood College')).append(Node('Sallins')).append(Node('County Kildare')).append(Node('Ireland')).append(Node('Europe')).append(Node('The World')).append(Node('The Universe'))
+root.to_text()
 ```
 
