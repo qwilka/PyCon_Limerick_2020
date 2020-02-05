@@ -1,52 +1,83 @@
 ---
 title: "Trees for structure and support in Python"
-subtitle: "tree data structures"
+subtitle: "PyCon Limerick 2020"
 author: "Stephen McEntee"
-institute: "testing"
 date: "2020-02-29"
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, metropolis, metropolis-fonts]
+    css: [default, metropolis, metropolis-fonts, custom.css]
     nature:
+      titleSlideClass: [top, left]
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      ratio: "4:3"
+    seal: true
 ---
+
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 library(knitr)
 ```
 
-# The first page
-
-this is dummy
-
----
-
-# Python code 1
-
-This is page 2.
-
 ```{python, echo=FALSE, results='hide', engine.path='/home/develop/local/anaconda3/envs/py3/bin/python'}
-from math import *
-sqrt(4)
 from examples.linked_list import LLnode
 ```
 
-```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-s = sin(pi/4)
-c = cos(pi/4)
-print("This is Page 2")
-```
 
-```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-print("sin(pi/4) = ", s)
-```
+# Trees 1
+
+This presentation is a high-level overview of tree data structures in computing.
+
+With some lower-level details in Python.
+
+#### presentation sides
+
+* Link to slides https://qwilka.github.io/PyCon_Limerick_2020/ 
+* The slides are created with [Remarkjs](https://remarkjs.com) and [Xaringan](https://slides.yihui.org/xaringan).
+* Press **h** for help.
+* References, links to source code, are in the presentation speaker notes (press **p**).
 
 
-End of page 2.
+???
+
+### references
+
+1. Title page photo by [Luke Richardson](https://unsplash.com/s/photos/luke-richardson) on [Unsplash](https://unsplash.com/).
+
+
+
+---
+
+# Trees 2
+
+### Trees are
+
+* connected, hierarchical data structure consisting of units called `nodes`
+* a node has <u>one</u> `parent` node in the level above and `child` nodes in the level below
+* the tree starts at the `root` node, which uniquely has no parent
+* trees are recursive, each child node is a sub-tree itself
+* nodes without children represent the end of the tree, and are called `leaf` nodes
+
+
+
+* social and political structures
+
+???
+
+* a lot of data falls naturally into a hierarchical tree structure.
+
+  * countries and states
+  * Organizational charts - organograms https://en.wikipedia.org/wiki/Organizational_chart
+
+
+Even data that isn't naturally hierarchical can be transformed into a hierarchy.
+
+social and political structures
+
+### references
 
 
 ---
@@ -109,10 +140,10 @@ for node in reversed(first):
 
 ???
 
-### References
+### references
 
-1. https://en.wikipedia.org/wiki/Linked_list
-
+1. [Linked list](https://en.wikipedia.org/wiki/Linked_list) article on Wikipedia.
+1. [linked_list.py](https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/linked_list.py) source code on Github.
 
 ---
 
@@ -131,15 +162,31 @@ root.show_linked_list()
 
 --
 
-- Linked lists and arrays are both 1-dimensional, ordered data structures. However, they could be regarded as occupying separate, orthogonal dimensions.
+- A linked list is a degenerate tree, following a single line of decent.
 
 --
 
-- An array could be regarded as occuping the 'horizontal' or 'width' dimension.
+- It could be considered as a 'vertical' data structure.
 
 --
 
-- A linked list could be regarded as occuping the 'vertical' or 'depth' dimension.
+- By contrast, an array could be regarded as a 'horizontal' data structure.
+
+
+---
+
+one three four
+
+
+---
+class: middle, center, inverse, notitletop
+
+.large[https://qwilka.github.io/PyCon_Limerick_2020/]
 
 
 
+???
+
+### references
+
+1. General references.

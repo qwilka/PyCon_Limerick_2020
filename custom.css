@@ -1,0 +1,11 @@
+.title-slide {
+    background-image: url(assets/luke-richardson-OJo6TXpFGiY-unsplash.jpg);
+    background-position: center; 
+    background-size: cover;
+    border-top: 0px;
+    padding-top: 85px;
+}
+
+.large { font-size: 150% }
+
+.notitletop {border-top: 0px;}

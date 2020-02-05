@@ -2,7 +2,8 @@ https://github.com/PyConLimerick/Limerick2020/blob/master/03_Tentative_Speaker_L
 
 bookdown::render_book('2019_PyConIE_pflacs.Rmd', 'beamer_presentation')
 bookdown::render_book('index.Rmd', 'xaringan::moon_reader')
-
+/home/develop/local/anaconda3/envs/rstats/lib/R/library/xaringan/rmarkdown/templates/xaringan/resources
+ratio: "16:9"
 
 Rmarkdown
 ===========
@@ -63,6 +64,11 @@ https://stackoverflow.com/questions/2598437/how-to-implement-a-binary-tree
 https://python-3-patterns-idioms-test.readthedocs.io/en/latest/PatternConcept.html
 https://stackoverflow.com/questions/3009935/looking-for-a-good-python-tree-data-structure
 http://openbookproject.net/thinkcs/python/english2e/ch21.html  How to Think Like a Computer Scientist: Learning with Python 2nd Ed   21. Trees
+http://kmike.ru/python-data-structures/  
+https://github.com/scipy/scipy/blob/v1.4.1/scipy/spatial/kdtree.py#L185-L942
+https://gist.github.com/hrldcpr/2012250   One-line Tree in Python
+https://news.ycombinator.com/item?id=3881171
+https://gist.github.com/jedie/523dc31dbbd22968b58a0f4798876e3c
 
 
 Python variables

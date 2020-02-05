@@ -8,15 +8,15 @@
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
-class: center, middle, inverse, title-slide
+class: top, left, title-slide
 
 # Trees for structure and support in Python
-## tree data structures
+## PyCon Limerick 2020
 ### Stephen McEntee
-### testing
 ### 2020-02-29
 
 ---
@@ -24,34 +24,60 @@ class: center, middle, inverse, title-slide
 
 
 
-# The first page
 
-this is dummy
+
+
+
+# Trees 1
+
+This presentation is a high-level overview of tree data structures in computing.
+
+With some lower-level details in Python.
+
+#### presentation sides
+
+* Link to slides https://qwilka.github.io/PyCon_Limerick_2020/ 
+* The slides are created with [Remarkjs](https://remarkjs.com) and [Xaringan](https://slides.yihui.org/xaringan).
+* Press **h** for help.
+* References, links to source code, are in the presentation speaker notes (press **p**).
+
+
+???
+
+### references
+
+1. Title page photo by [Luke Richardson](https://unsplash.com/s/photos/luke-richardson) on [Unsplash](https://unsplash.com/).
+
+
 
 ---
 
-# Python code 1
+# Trees 2
 
-This is page 2.
+### Trees are
 
-
-
-
-```python
-&gt;&gt;&gt; s = sin(pi/4)
-&gt;&gt;&gt; c = cos(pi/4)
-&gt;&gt;&gt; print("This is Page 2")
-This is Page 2
-```
+* connected, hierarchical data structure consisting of units called `nodes`
+* a node has &lt;u&gt;one&lt;/u&gt; `parent` node in the level above and `child` nodes in the level below
+* the tree starts at the `root` node, which uniquely has no parent
+* trees are recursive, each child node is a sub-tree itself
 
 
-```python
-&gt;&gt;&gt; print("sin(pi/4) = ", s)
-sin(pi/4) =  0.7071067811865475
-```
+
+* social and political structures
+
+???
+
+* a lot of data falls naturally into a hierarchical tree structure.
+
+  * countries and states
+  * Organizational charts - organograms https://en.wikipedia.org/wiki/Organizational_chart
 
 
-End of page 2.
+Even data that isn't naturally hierarchical can be transformed into a hierarchy.
+
+social and political structures
+
+### references
 
 
 ---
@@ -92,7 +118,7 @@ class LLnode:
 &gt;&gt;&gt; sec = LLnode('Second Node', first)
 &gt;&gt;&gt; third = LLnode(3, sec)
 &gt;&gt;&gt; third.append( LLnode(4.0, None) )
-&lt;examples.linked_list.LLnode object at 0x7f9c833da750&gt;
+&lt;examples.linked_list.LLnode object at 0x7f91bd0e1490&gt;
 ```
 {{content}}
 ]
@@ -126,10 +152,10 @@ First Node
 
 ???
 
-### References
+### references
 
-1. https://en.wikipedia.org/wiki/Linked_list
-
+1. [Linked list](https://en.wikipedia.org/wiki/Linked_list) article on Wikipedia.
+1. [linked_list.py](https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/linked_list.py) source code on Github.
 
 ---
 
@@ -139,7 +165,7 @@ First Node
 ```python
 &gt;&gt;&gt; root = LLnode('Stephen Dedalus', None)
 &gt;&gt;&gt; root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')).append(LLnode('Sallins')).append(LLnode('County Kildare')).append(LLnode('Ireland')).append(LLnode('Europe')).append(LLnode('The World')).append(LLnode('The Universe'))
-&lt;examples.linked_list.LLnode object at 0x7f9c833dbe10&gt;
+&lt;examples.linked_list.LLnode object at 0x7f91bd0e6dd0&gt;
 ```
 
 --
@@ -160,18 +186,34 @@ First Node
 
 --
 
-- Linked lists and arrays are both 1-dimensional, ordered data structures. However, they could be regarded as occupying separate, orthogonal dimensions.
+- A linked list is a degenerate tree, following a single line of decent.
 
 --
 
-- An array could be regarded as occuping the 'horizontal' or 'width' dimension.
+- It could be considered as a 'vertical' data structure.
 
 --
 
-- A linked list could be regarded as occuping the 'vertical' or 'depth' dimension.
+- By contrast, an array could be regarded as a 'horizontal' data structure.
+
+
+---
+
+one three four
+
+
+---
+class: middle, center, inverse, notitletop
+
+.large[https://qwilka.github.io/PyCon_Limerick_2020/]
 
 
 
+???
+
+### references
+
+1. General references.
 
 &lt;!--chapter:end:index.Rmd--&gt;
     </textarea>
@@ -180,7 +222,8 @@ First Node
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
 "highlightLines": true,
-"countIncrementalSlides": false
+"countIncrementalSlides": false,
+"ratio": "4:3"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
