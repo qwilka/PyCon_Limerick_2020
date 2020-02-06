@@ -45,6 +45,9 @@ https://stats.stackexchange.com/questions/12140/conditional-inference-trees-vs-t
 https://eeecon.uibk.ac.at/~zeileis/publications/papers/
 https://eeecon.uibk.ac.at/~zeileis/papers/Hothorn+Hornik+Zeileis-2006.pdf
 Torsten Hothorn, Kurt Hornik, Achim Zeileis (2006). “Unbiased Recursive Partitioning: A Conditional Inference Framework.” Journal of Computational and Graphical Statistics, 15(3), 651-674. 
+http://etetoolkit.org/docs/2.3/index.html
+https://treelib.readthedocs.io/en/latest/#
+https://github.com/caesar0301/treelib
 
 
 https://en.wikipedia.org/wiki/Mind_map

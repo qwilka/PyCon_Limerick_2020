@@ -23,6 +23,7 @@ library(knitr)
 ```
 
 ```{python, echo=FALSE, results='hide', engine.path='/home/develop/local/anaconda3/envs/py3/bin/python'}
+from examples.one_line_tree import onelinetree, show_onelinetree_example
 from examples.linked_list import LLnode
 from vntree import Node
 ```
@@ -83,16 +84,78 @@ social and political structures
 
 ---
 
-# Creating trees in Python
+# List Tree
 
+`list-node API: [<node name>: str, <data>: any, <child node>: list-node, ...]`
+
+--
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+root = ["The World", {"population":7762609412}] # define tree root node 
+europe = ["Europe", {"population":737000000}]  # define 1st child node
+root.append(europe)  # append 1st child node to root node
+namerica = ["North America", {"population":367914615}] # define 2nd child node
+root.append(namerica)  # append 2nd child node to root node
+scandinavia = ["Scandinavia", {"population":31000000}]
+europe.append(scandinavia)
+scandinavia.append( ["Denmark", {"population":5792202}] )
+scandinavia.append( ["Sweden", {"population":10099265}] )
+namerica.append( ["Canada", {"population":37742154}] ) 
+```
+
+--
+
+
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+pprint.pprint(root, indent=4, compact=True)
+```
+
+---
+
+# One Line Tree
+
+.pull-left[
+```python
+from collections import defaultdict
+
+*def tree(): return defaultdict(tree)
+
+root = tree()
+root["The World"]
+root["The World"]["population"] = 7762609412
+root["The World"]["Europe"]
+root["The World"]["Europe"]["Scandinavia"]
+root["The World"]["Europe"]["Scandinavia"]["Denmark"]
+root["The World"]["Europe"]["Scandinavia"]["Denmark"]["population"] = 5792202
+root["The World"]["Europe"]["Scandinavia"]["Sweden"]
+root["The World"]["Europe"]["Scandinavia"]["Sweden"]["population"] = 10099265
+root["The World"]["Europe"]["Scandinavia"]["Norway"]
+root["The World"]["Europe"]["Scandinavia"]["Norway"]["population"] = 5421241
+root["The World"]["North America"]
+root["The World"]["North America"]["Canada"]
+root["The World"]["North America"]["Canada"]["population"] = 37742154
+
+import json
+print(json.dumps(root, indent=2))
+```
+]
+
+
+--
+
+.pull-right[
+```{python, echo=FALSE, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+show_onelinetree_example()
+```
+]
 
 ???
 
 ### references
 
-
-1. GitHub Gist [hrldcpr/tree.md](https://gist.github.com/hrldcpr/2012250) One-line Tree in Python
-1. GitHub Gist [jedie/simple_tree.py](https://gist.github.com/jedie/523dc31dbbd22968b58a0f4798876e3c)
+1. GitHub Gist [hrldcpr/tree.md](https://gist.github.com/hrldcpr/2012250) «One-line Tree in Python»
+1. Source code 
 
 ---
 
@@ -118,7 +181,7 @@ class LLnode:
   def __reversed__(self):
       ... 
 
-  def show_linked_list(self):
+  def show(self):
       ... 
 ```
 ]
@@ -171,7 +234,7 @@ root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')
 --
 
 ```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-root.show_linked_list()
+root.show()
 ```
 
 --
@@ -212,7 +275,7 @@ class Node:
   def copy(self):
     return copy.deepcopy(self) 
 
-  def to_texttree(self):
+  def show(self):
       ... 
 ```
 ]

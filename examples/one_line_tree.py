@@ -6,14 +6,14 @@ Also relevant:
 https://news.ycombinator.com/item?id=3881171
 https://stackoverflow.com/questions/651794/whats-the-best-way-to-initialize-a-dict-of-dicts-in-python/651879#651879
 """
-from collections import defaultdict
 import json
+from collections import defaultdict
 
 
 def onelinetree(): return defaultdict(onelinetree)
 
 
-if __name__=="__main__":
+def show_onelinetree_example():
     root = onelinetree()
     root["The World"]
     root["The World"]["population"] = 7762609412
@@ -29,5 +29,9 @@ if __name__=="__main__":
     root["The World"]["North America"]["Canada"]
     root["The World"]["North America"]["Canada"]["population"] = 37742154
     print(json.dumps(root, indent=2))
+
+
+if __name__=="__main__":
+    show_onelinetree_example()
 
 
