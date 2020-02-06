@@ -24,6 +24,7 @@ library(knitr)
 
 ```{python, echo=FALSE, results='hide', engine.path='/home/develop/local/anaconda3/envs/py3/bin/python'}
 from examples.linked_list import LLnode
+from vntree import Node
 ```
 
 
@@ -79,6 +80,19 @@ social and political structures
 
 ### references
 
+
+---
+
+# Creating trees in Python
+
+
+???
+
+### references
+
+
+1. GitHub Gist [hrldcpr/tree.md](https://gist.github.com/hrldcpr/2012250) One-line Tree in Python
+1. GitHub Gist [jedie/simple_tree.py](https://gist.github.com/jedie/523dc31dbbd22968b58a0f4798876e3c)
 
 ---
 
@@ -175,7 +189,70 @@ root.show_linked_list()
 
 ---
 
-one three four
+# A basic tree in Python
+
+.pull-left[
+```python
+class Node:
+  def __init__(self, name, parent, data=None):
+    self.name = name
+    self.children = []
+    self.parent = parent
+    if parent: parent.add_child(self)
+    self.data = data
+
+  def add_child(self, newnode):
+    self.children.append(newnode)
+    newnode.parent = self
+    return newnode
+
+  def remove_child(self, idx):
+    return self.children.pop(idx)
+
+  def copy(self):
+    return copy.deepcopy(self) 
+
+  def to_texttree(self):
+      ... 
+```
+]
+
+--
+
+.pull-right[
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+root = Node('Root node', None)
+child1 = Node('First child', root)
+child2 = Node('2nd child', root, {"n":123})
+child1.add_child( Node("grand-child", None, {}) )
+```
+{{content}}
+]
+
+--
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+for node in root:
+    print(node.name)
+```
+{{content}}
+
+--
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+for node in reversed(root):
+    print(node.name)
+```
+{{content}}
+
+
+???
+
+### references
+
+1. [Linked list](https://en.wikipedia.org/wiki/Linked_list) article on Wikipedia.
+1. [linked_list.py](https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/linked_list.py) source code on Github.
+
 
 
 ---

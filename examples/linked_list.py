@@ -29,7 +29,7 @@ class LLnode:
             yield node
         yield self
 
-    def show_linked_list(self, display=True, indent=2):
+    def show(self, display=True, indent=2):
         for ii, node in enumerate(self):
             if ii==0:
                 stg = "|-- " + node.value
@@ -63,4 +63,4 @@ if __name__ == '__main__':
         .append(LLnode('The World'))
         .append(LLnode('The Universe'))
         )
-        root.show_linked_list()
+        root.show()

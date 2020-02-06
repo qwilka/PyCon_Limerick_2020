@@ -60,6 +60,7 @@ With some lower-level details in Python.
 * a node has &lt;u&gt;one&lt;/u&gt; `parent` node in the level above and `child` nodes in the level below
 * the tree starts at the `root` node, which uniquely has no parent
 * trees are recursive, each child node is a sub-tree itself
+* nodes without children represent the end of the tree, and are called `leaf` nodes
 
 
 
@@ -118,7 +119,7 @@ class LLnode:
 &gt;&gt;&gt; sec = LLnode('Second Node', first)
 &gt;&gt;&gt; third = LLnode(3, sec)
 &gt;&gt;&gt; third.append( LLnode(4.0, None) )
-&lt;examples.linked_list.LLnode object at 0x7f91bd0e1490&gt;
+&lt;examples.linked_list.LLnode object at 0x7f8a4d194bd0&gt;
 ```
 {{content}}
 ]
@@ -165,7 +166,7 @@ First Node
 ```python
 &gt;&gt;&gt; root = LLnode('Stephen Dedalus', None)
 &gt;&gt;&gt; root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')).append(LLnode('Sallins')).append(LLnode('County Kildare')).append(LLnode('Ireland')).append(LLnode('Europe')).append(LLnode('The World')).append(LLnode('The Universe'))
-&lt;examples.linked_list.LLnode object at 0x7f91bd0e6dd0&gt;
+&lt;examples.linked_list.LLnode object at 0x7f8a4d194d90&gt;
 ```
 
 --
@@ -199,7 +200,82 @@ First Node
 
 ---
 
-one three four
+# A basic tree in Python
+
+.pull-left[
+```python
+class Node:
+  def __init__(self, name, parent, data):
+    self.name = name
+    self.children = []
+    self.parent = parent
+    if parent: parent.add_child(self)
+    self.data = data
+
+  def add_child(self, newnode):
+    self.children.append(newnode)
+    newnode.parent = self
+    return newnode
+
+  def remove_child(self, idx):
+    return self.children.pop(idx)
+
+  def copy(self):
+    return copy.deepcopy(self) 
+
+  def to_texttree(self):
+      ... 
+```
+]
+
+--
+
+.pull-right[
+
+```python
+&gt;&gt;&gt; root = Node('Root node', None, {})
+&gt;&gt;&gt; child1 = Node('First child', root, {})
+&gt;&gt;&gt; child2 = Node('2nd child', root, {})
+&gt;&gt;&gt; child1.add_child( Node("grandchild", None, {}) )
+&lt;vntree.node.Node object at 0x7f8a4d19ac50&gt;
+```
+{{content}}
+]
+
+--
+
+
+```python
+&gt;&gt;&gt; for node in root:
+&gt;&gt;&gt;     print(node.name)
+Root node
+First child
+grandchild
+2nd child
+```
+{{content}}
+
+--
+
+
+```python
+&gt;&gt;&gt; for node in reversed(root):
+&gt;&gt;&gt;     print(node.name)
+grandchild
+First child
+2nd child
+Root node
+```
+{{content}}
+
+
+???
+
+### references
+
+1. [Linked list](https://en.wikipedia.org/wiki/Linked_list) article on Wikipedia.
+1. [linked_list.py](https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/linked_list.py) source code on Github.
+
 
 
 ---
