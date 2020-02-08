@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Trees for structure and support in Python</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Stephen McEntee" />
+    <meta name="date" content="2020-02-29" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: top, left, title-slide
+
+# Trees for structure and support in Python
+## PyCon Limerick 2020
+### Stephen McEntee
+### 2020-02-29
+
+---
+
+
+
+
+
+
+
+
+# Trees 1
+
+This presentation is a high-level overview of tree data structures in computing.
+
+With some lower-level details in Python.
+
+#### presentation sides
+
+* Link to slides https://qwilka.github.io/PyCon_Limerick_2020/ 
+* The slides are created with [Remarkjs](https://remarkjs.com) and [Xaringan](https://slides.yihui.org/xaringan).
+* Press **h** for help.
+* References, links to source code, are in the presentation speaker notes (press **p**).
+
+
+???
+
+### references
+
+1. Title page photo by [Luke Richardson](https://unsplash.com/s/photos/luke-richardson) on [Unsplash](https://unsplash.com/).
+
+
+
+---
+
+# Trees 2
+
+### Trees are
+
+* connected, hierarchical data structure consisting of units called `nodes`
+* a node has &lt;u&gt;one&lt;/u&gt; `parent` node in the level above and `child` nodes in the level below
+* the tree starts at the `root` node, which uniquely has no parent
+* trees are recursive, each child node is a sub-tree itself
+* nodes without children represent the end of the tree, and are called `leaf` nodes
+
+
+
+* social and political structures
+
+???
+
+* a lot of data falls naturally into a hierarchical tree structure.
+
+  * countries and states
+  * Organizational charts - organograms https://en.wikipedia.org/wiki/Organizational_chart
+
+
+Even data that isn't naturally hierarchical can be transformed into a hierarchy.
+
+social and political structures
+
+### references
+
+
+---
+
+# List Tree
+
+`list-node API: [&lt;node name&gt;: str, &lt;data&gt;: any, &lt;child node&gt;: list-node, ...]`
+
+--
+
+
+```python
+&gt;&gt;&gt; root = ["The World", {"population":7762609412}] # define tree root node 
+&gt;&gt;&gt; europe = ["Europe", {"population":737000000}]  # define 1st child node
+&gt;&gt;&gt; root.append(europe)  # append 1st child node to root node
+&gt;&gt;&gt; namerica = ["North America", {"population":367914615}] # define 2nd child node
+&gt;&gt;&gt; root.append(namerica)  # append 2nd child node to root node
+&gt;&gt;&gt; scandinavia = ["Scandinavia", {"population":31000000}]
+&gt;&gt;&gt; europe.append(scandinavia)
+&gt;&gt;&gt; scandinavia.append( ["Denmark", {"population":5792202}] )
+&gt;&gt;&gt; scandinavia.append( ["Sweden", {"population":10099265}] )
+&gt;&gt;&gt; namerica.append( ["Canada", {"population":37742154}] ) 
+```
+
+--
+
+
+
+
+```python
+&gt;&gt;&gt; pprint.pprint(root, indent=4, compact=True)
+[   'The World', {'population': 7762609412},
+    [   'Europe', {'population': 737000000},
+        [   'Scandinavia', {'population': 31000000},
+            ['Denmark', {'population': 5792202}],
+            ['Sweden', {'population': 10099265}]]],
+    [   'North America', {'population': 367914615},
+        ['Canada', {'population': 37742154}]]]
+```
+
+---
+
+# One Line Tree
+
+.pull-left[
+```python
+from collections import defaultdict
+
+*def tree(): return defaultdict(tree)
+
+root = tree()
+root["The World"]
+root["The World"]["population"] = 7762609412
+root["The World"]["Europe"]
+root["The World"]["Europe"]["Scandinavia"]
+root["The World"]["Europe"]["Scandinavia"]["Denmark"]
+root["The World"]["Europe"]["Scandinavia"]["Denmark"]["population"] = 5792202
+root["The World"]["Europe"]["Scandinavia"]["Sweden"]
+root["The World"]["Europe"]["Scandinavia"]["Sweden"]["population"] = 10099265
+root["The World"]["Europe"]["Scandinavia"]["Norway"]
+root["The World"]["Europe"]["Scandinavia"]["Norway"]["population"] = 5421241
+root["The World"]["North America"]
+root["The World"]["North America"]["Canada"]
+root["The World"]["North America"]["Canada"]["population"] = 37742154
+
+import json
+print(json.dumps(root, indent=2))
+```
+]
+
+
+--
+
+.pull-right[
+
+```
+{
+  "The World": {
+    "population": 7762609412,
+    "Europe": {
+      "Scandinavia": {
+        "Denmark": {
+          "population": 5792202
+        },
+        "Sweden": {
+          "population": 10099265
+        },
+        "Norway": {
+          "population": 5421241
+        }
+      }
+    },
+    "North America": {
+      "Canada": {
+        "population": 37742154
+      }
+    }
+  }
+}
+```
+]
+
+???
+
+### references
+
+1. GitHub Gist [hrldcpr/tree.md](https://gist.github.com/hrldcpr/2012250) «One-line Tree in Python»
+1. Source code 
+
+---
+
+# A linked list in Python
+
+.pull-left[
+```python
+class LLnode:
+  def __init__(self, value, prev):
+    self.prev = prev
+    if prev:
+        prev.append(self)
+    self.next = () 
+    self.value = value
+
+  def append(self, newnode):
+    self.next = newnode
+    return newnode 
+
+  def __iter__(self):
+      ...
+
+  def __reversed__(self):
+      ... 
+
+  def show(self):
+      ... 
+```
+]
+
+--
+
+.pull-right[
+
+```python
+&gt;&gt;&gt; first = LLnode('First Node', None)
+&gt;&gt;&gt; sec = LLnode('Second Node', first)
+&gt;&gt;&gt; third = LLnode(3, sec)
+&gt;&gt;&gt; third.append( LLnode(4.0, None) )
+&lt;examples.linked_list.LLnode object at 0x7fb437dddd90&gt;
+```
+{{content}}
+]
+
+--
+
+
+```python
+&gt;&gt;&gt; for node in first:
+&gt;&gt;&gt;     print(node.value)
+First Node
+Second Node
+3
+4.0
+```
+{{content}}
+
+--
+
+
+```python
+&gt;&gt;&gt; for node in reversed(first):
+&gt;&gt;&gt;     print(node.value)
+4.0
+3
+Second Node
+First Node
+```
+{{content}}
+
+
+???
+
+### references
+
+1. [Linked list](https://en.wikipedia.org/wiki/Linked_list) article on Wikipedia.
+1. [linked_list.py](https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/linked_list.py) source code on Github.
+
+---
+
+# Linked List - usage example
+
+
+```python
+&gt;&gt;&gt; root = LLnode('Stephen Dedalus', None)
+&gt;&gt;&gt; root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')).append(LLnode('Sallins')).append(LLnode('County Kildare')).append(LLnode('Ireland')).append(LLnode('Europe')).append(LLnode('The World')).append(LLnode('The Universe'))
+&lt;examples.linked_list.LLnode object at 0x7fb437ddd490&gt;
+```
+
+--
+
+
+```python
+&gt;&gt;&gt; root.show()
+|-- Stephen Dedalus
+    +-&gt; Class of Elements
+        +-&gt; Clongowes Wood College
+            +-&gt; Sallins
+                +-&gt; County Kildare
+                    +-&gt; Ireland
+                        +-&gt; Europe
+                            +-&gt; The World
+                                +-&gt; The Universe
+```
+
+--
+
+- A linked list is a degenerate tree, following a single line of decent.
+
+--
+
+- It could be considered as a 'vertical' data structure.
+
+--
+
+- By contrast, an array could be regarded as a 'horizontal' data structure.
+
+
+---
+
+# A basic tree in Python
+
+.pull-left[
+```python
+class Node:
+  def __init__(self, name, parent, data=None):
+    self.name = name
+    self.children = []
+    self.parent = parent
+    if parent: parent.add_child(self)
+    self.data = data
+
+  def add_child(self, newnode):
+    self.children.append(newnode)
+    newnode.parent = self
+    return newnode
+
+  def remove_child(self, idx):
+    return self.children.pop(idx)
+
+  def copy(self):
+    return copy.deepcopy(self) 
+
+  def show(self):
+      ... 
+```
+]
+
+--
+
+.pull-right[
+
+```python
+&gt;&gt;&gt; root = Node('Root node', None)
+&gt;&gt;&gt; child1 = Node('First child', root)
+&gt;&gt;&gt; child2 = Node('2nd child', root, {"n":123})
+&gt;&gt;&gt; child1.add_child( Node("grand-child", None, {}) )
+&lt;vntree.node.Node object at 0x7fb437dee290&gt;
+```
+{{content}}
+]
+
+--
+
+
+```python
+&gt;&gt;&gt; for node in root:
+&gt;&gt;&gt;     print(node.name)
+Root node
+First child
+grand-child
+2nd child
+```
+{{content}}
+
+--
+
+
+```python
+&gt;&gt;&gt; for node in reversed(root):
+&gt;&gt;&gt;     print(node.name)
+grand-child
+First child
+2nd child
+Root node
+```
+{{content}}
+
+
+???
+
+### references
+
+1. [Linked list](https://en.wikipedia.org/wiki/Linked_list) article on Wikipedia.
+1. [linked_list.py](https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/linked_list.py) source code on Github.
+
+
+
+---
+class: middle, center, inverse, notitletop
+
+.large[https://qwilka.github.io/PyCon_Limerick_2020/]
+
+
+
+???
+
+### references
+
+1. General references.
+
+&lt;!--chapter:end:index.Rmd--&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "4:3"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
