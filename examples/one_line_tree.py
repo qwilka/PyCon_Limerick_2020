@@ -23,8 +23,8 @@ def show_onelinetree_example():
     root["The World"]["Europe"]["Scandinavia"]["Denmark"]["population"] = 5792202
     root["The World"]["Europe"]["Scandinavia"]["Sweden"]
     root["The World"]["Europe"]["Scandinavia"]["Sweden"]["population"] = 10099265
-    root["The World"]["Europe"]["Scandinavia"]["Norway"]
-    root["The World"]["Europe"]["Scandinavia"]["Norway"]["population"] = 5421241
+    # root["The World"]["Europe"]["Scandinavia"]["Norway"]
+    # root["The World"]["Europe"]["Scandinavia"]["Norway"]["population"] = 5421241
     root["The World"]["North America"]
     root["The World"]["North America"]["Canada"]
     root["The World"]["North America"]["Canada"]["population"] = 37742154

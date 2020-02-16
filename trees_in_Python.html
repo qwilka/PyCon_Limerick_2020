@@ -138,8 +138,6 @@ root["The World"]["Europe"]["Scandinavia"]["Denmark"]
 root["The World"]["Europe"]["Scandinavia"]["Denmark"]["population"] = 5792202
 root["The World"]["Europe"]["Scandinavia"]["Sweden"]
 root["The World"]["Europe"]["Scandinavia"]["Sweden"]["population"] = 10099265
-root["The World"]["Europe"]["Scandinavia"]["Norway"]
-root["The World"]["Europe"]["Scandinavia"]["Norway"]["population"] = 5421241
 root["The World"]["North America"]
 root["The World"]["North America"]["Canada"]
 root["The World"]["North America"]["Canada"]["population"] = 37742154
@@ -165,9 +163,6 @@ print(json.dumps(root, indent=2))
         },
         "Sweden": {
           "population": 10099265
-        },
-        "Norway": {
-          "population": 5421241
         }
       }
     },
@@ -186,6 +181,7 @@ print(json.dumps(root, indent=2))
 ### references
 
 1. GitHub Gist [hrldcpr/tree.md](https://gist.github.com/hrldcpr/2012250) «One-line Tree in Python»
+1. [Jeff Khupp 2013 article](https://jeffknupp.com/blog/2013/02/14/drastically-improve-your-python-understanding-pythons-execution-model/) describes a similar "auto-vivifying dictionary that operates like a trie"
 1. Source code 
 
 ---
@@ -226,7 +222,7 @@ class LLnode:
 &gt;&gt;&gt; sec = LLnode('Second Node', first)
 &gt;&gt;&gt; third = LLnode(3, sec)
 &gt;&gt;&gt; third.append( LLnode(4.0, None) )
-&lt;examples.linked_list.LLnode object at 0x7fb437dddd90&gt;
+&lt;examples.linked_list.LLnode object at 0x7fbb1041d710&gt;
 ```
 {{content}}
 ]
@@ -273,7 +269,7 @@ First Node
 ```python
 &gt;&gt;&gt; root = LLnode('Stephen Dedalus', None)
 &gt;&gt;&gt; root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')).append(LLnode('Sallins')).append(LLnode('County Kildare')).append(LLnode('Ireland')).append(LLnode('Europe')).append(LLnode('The World')).append(LLnode('The Universe'))
-&lt;examples.linked_list.LLnode object at 0x7fb437ddd490&gt;
+&lt;examples.linked_list.LLnode object at 0x7fbb10a7a190&gt;
 ```
 
 --
@@ -307,7 +303,7 @@ First Node
 
 ---
 
-# A basic tree in Python
+# A basic tree Node class
 
 .pull-left[
 ```python
@@ -344,7 +340,7 @@ class Node:
 &gt;&gt;&gt; child1 = Node('First child', root)
 &gt;&gt;&gt; child2 = Node('2nd child', root, {"n":123})
 &gt;&gt;&gt; child1.add_child( Node("grand-child", None, {}) )
-&lt;vntree.node.Node object at 0x7fb437dee290&gt;
+&lt;vntree.node.Node object at 0x7fbb10423e50&gt;
 ```
 {{content}}
 ]
@@ -386,9 +382,11 @@ Root node
 
 
 ---
-class: middle, center, inverse, notitletop
+class: middle, center, notitletop
+background-image: url(assets/Darwin_Tree_1837.png)
+background-size: cover
 
-.large[https://qwilka.github.io/PyCon_Limerick_2020/]
+.large[**https://qwilka.github.io/PyCon_Limerick_2020/**]
 
 
 
@@ -398,7 +396,7 @@ class: middle, center, inverse, notitletop
 
 1. General references.
 
-&lt;!--chapter:end:index.Rmd--&gt;
+&lt;!--chapter:end:trees_in_Python.Rmd--&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

@@ -76,6 +76,7 @@ Python variables
 https://jakevdp.github.io/WhirlwindTourOfPython/03-semantics-variables.html
 https://stackoverflow.com/questions/1538342/how-can-i-get-the-name-of-an-object-in-python
 https://realpython.com/python-variables/
+https://medium.com/@larmalade/python-everything-is-an-object-and-some-objects-are-mutable-4f55eb2b468b
 
 Python trees
 -------------

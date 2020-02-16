@@ -26,6 +26,7 @@ library(knitr)
 from examples.one_line_tree import onelinetree, show_onelinetree_example
 from examples.linked_list import LLnode
 from vntree import Node
+import pprint
 ```
 
 
@@ -130,8 +131,6 @@ root["The World"]["Europe"]["Scandinavia"]["Denmark"]
 root["The World"]["Europe"]["Scandinavia"]["Denmark"]["population"] = 5792202
 root["The World"]["Europe"]["Scandinavia"]["Sweden"]
 root["The World"]["Europe"]["Scandinavia"]["Sweden"]["population"] = 10099265
-root["The World"]["Europe"]["Scandinavia"]["Norway"]
-root["The World"]["Europe"]["Scandinavia"]["Norway"]["population"] = 5421241
 root["The World"]["North America"]
 root["The World"]["North America"]["Canada"]
 root["The World"]["North America"]["Canada"]["population"] = 37742154
@@ -253,7 +252,7 @@ root.show()
 
 ---
 
-# A basic tree in Python
+# A basic tree Node class
 
 .pull-left[
 ```python
@@ -320,9 +319,11 @@ for node in reversed(root):
 
 
 ---
-class: middle, center, inverse, notitletop
+class: middle, center, notitletop
+background-image: url(assets/Darwin_Tree_1837.png)
+background-size: cover
 
-.large[https://qwilka.github.io/PyCon_Limerick_2020/]
+.large[**https://qwilka.github.io/PyCon_Limerick_2020/**]
 
 
 
