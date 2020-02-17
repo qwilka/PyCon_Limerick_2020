@@ -1,1 +1,10 @@
 https://qwilka.github.io/PyCon_Limerick_2020/examples/Vega/world-selection-vega.html
+
+
+https://vega.github.io/vega/examples/tree-layout/
+https://vega.github.io/vega/docs/transforms/tree/
+
+https://vega.github.io/vega/docs/marks/image/
+https://vega.github.io/vega/docs/marks/image.vg.json
+https://github.com/vega/vega/blob/master/docs/data/flare.json
+
