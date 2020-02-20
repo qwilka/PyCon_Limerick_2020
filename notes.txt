@@ -20,6 +20,8 @@ https://slides.yihui.org/xaringan/incremental.html
 https://remarkjs.com/#1
 https://arm.rbind.io/days/day1/xaringan/
 https://garthtarr.github.io/sydney_xaringan/#44  
+https://ismayc.github.io/talks/ness-infer/slide_deck.html#1
+https://jenthompson.me/slides/rmedicine2018/rmedicine2018#1
 https://stackoverflow.com/questions/46408057/incremental-slides-do-not-work-with-a-two-column-layout
 
 
@@ -77,6 +79,8 @@ https://jakevdp.github.io/WhirlwindTourOfPython/03-semantics-variables.html
 https://stackoverflow.com/questions/1538342/how-can-i-get-the-name-of-an-object-in-python
 https://realpython.com/python-variables/
 https://medium.com/@larmalade/python-everything-is-an-object-and-some-objects-are-mutable-4f55eb2b468b
+https://towardsdatascience.com/closures-and-decorators-in-python-2551abbc6eb6  In Python, everything is an object, and the variables are references to these objects.
+
 
 Python trees
 -------------

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 400,
+  "height": 400,
+  "padding": 5,
+  "autosize": "fit",
+
+  "data": [
+    {
+      "name": "tree",
+      "values": [
+        {"id": "()", "parent": null, "title": "World", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/world.jpg"},
+        {"id": "(2)", "parent": "()", "title": "Europe", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/FreeVector-Map-Of-Europe.jpg"},
+        {"id": "(4)", "parent": "()", "title": "South America", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/SouthAmerica.jpg"},
+        {"id": "(4,0)", "parent": "(4)", "title": "Chile", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/23px-Flag_of_Chile.webp"},
+        {"id": "(2,0)", "parent": "(2)", "title": "Belgium", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/23px-Flag_of_Belgium.webp"},
+        {"id": "(2,1)", "parent": "(2)", "title": "Greece", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/23px-Flag_of_Greece.webp"},
+        {"id": "(2,2)", "parent": "(2)", "title": "Scandinavia", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/Scandinavia.jpg"},
+        {"id": "(2,2,0)", "parent": "(2,2)", "title": "Denmark", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/20px-Flag_of_Denmark.webp"},
+        {"id": "(2,2,0,0)", "parent": "(2,2,0)", "title": "Faroe Islands", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/21px-Flag_of_the_Faroe_Islands.webp"},
+        {"id": "(2,2,0,1)", "parent": "(2,2,0)", "title": "Greenland", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/23px-Flag_of_Greenland.webp"},
+        {"id": "(2,2,1)", "parent": "(2,2)", "title": "Sweden", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/23px-Flag_of_Sweden.webp"},
+        {"id": "(2,2,2)", "parent": "(2,2)", "title": "Norway", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/21px-Flag_of_Norway.webp"},
+        {"id": "(2,2,2)", "parent": "(2,2)", "title": "Iceland", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/21px-Flag_of_Iceland.webp"},
+        {"id": "(2,2,2)", "parent": "(2,2)", "title": "Finland", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/23px-Flag_of_Finland.webp"},
+        {"id": "(2,3)", "parent": "(2)", "title": "Spain", "img": "https://raw.githubusercontent.com/qwilka/PyCon_Limerick_2020/master/assets/23px-Flag_of_Spain.webp"}
+      ],
+      "transform": [
+        {
+          "type": "stratify",
+          "key": "id",
+          "parentKey": "parent"
+        },
+        {
+          "type": "tree",
+          "method": "tidy",
+          "separation": true,
+          "size": [{"signal": "width"}, {"signal": "height"}],
+          "as": ["x", "y", "children", "depth"]
+        }
+      ]
+    },
+    {
+      "name": "links",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "treelinks"
+        },
+        {
+          "type": "linkpath",
+          "orient": "horizontal",
+          "shape": "orthogonal"
+        }
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": {"scheme": "category20"}
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "path",
+      "from": {"data": "links"},
+      "encode": {
+        "enter": {
+          "stroke": {"value": "#1ff"}
+        },
+        "update": {
+          "path": {"field": "path"}
+        }
+      }
+    },
+    {
+      "type": "image",
+      "from": {"data": "tree"},
+      "encode": {
+        "enter": {
+          "url": {"field": "img"}
+        },
+        "update": {
+          "opacity": {"value": 1},
+          "x": {"field": "x"},
+          "y": {"field": "y"},
+          "width": {"value": 30},
+          "height": {"value": 30},
+          "align": {"value": "center"},
+          "baseline": {"value": "top"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "tree"
+      },
+      "encode": {
+        "enter": {
+          "text": {
+            "field": "title"
+          },
+          "fontSize": {
+            "value": 9
+          },
+          "baseline": {
+            "value": "middle"
+          }
+        },
+        "update": {
+          "x": {
+            "field": "x"
+          },
+          "y": {
+            "field": "y"
+          },
+          "dy": {
+            "value": 40
+          },
+          "align": {
+            "value": "center"
+          },
+          "opacity": {
+            "value": 1
+          }
+        }
+      }
+    }
+  ]
+}

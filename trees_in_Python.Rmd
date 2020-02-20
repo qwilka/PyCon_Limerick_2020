@@ -30,43 +30,96 @@ import pprint
 ```
 
 
-# Trees 1
+# Introduction
+
+### About the speaker
+
+* I'm a chartered mechanical engineer
+* 20+ years' experience working in oil & gas subsea engineering
+* 15+ years' experience programming in Python
+  * also Fortran, Perl, Julia ...
+* Presented at PyCon Ireland 2019
+  * [pflacs: Faster loadcases and parameter studies](https://qwilka.github.io/talk/2019-10-12_pycon2019/)
+* Own start-up company [Qwilka](https://qwilka.github.io/)
+  * developing software for data management and analytics
+  * targeting unstructured engineering data
+
+
+???
+
+### References, links
+
+1. Title page photo by [Luke Richardson](https://unsplash.com/s/photos/luke-richardson) on [Unsplash](https://unsplash.com/).
+
+
+---
+
+class: notitletop
+
+<a href="https://github.com/qwilka/metadata-manager-2015">
+<img src="assets/metadata-manager-2015-screenshot.png" width="30%" align="left" />
+</a>
+
+<a href="https://github.com/qwilka/data-visualizer-2015">
+<img src="assets/data-visualizer-2015-screenshot.png" width="50%" align="right" />
+</a>
+
+<a href="https://qwilka.github.io/">
+<img src="assets/2019-09-30_Visinum_screenshot.jpg" width="80%" align="bottom" />
+</a>
+
+???
+
+### References, links
+
+1. https://qwilka.github.io/
+1. https://github.com/qwilka/data-visualizer-2015
+1. https://github.com/qwilka/metadata-manager-2015
+
+---
+
+# Introduction
+
+### About the presentation
 
 This presentation is a high-level overview of tree data structures in computing.
 
 With some lower-level details in Python.
 
-#### presentation sides
+### Presentation sides
 
 * Link to slides https://qwilka.github.io/PyCon_Limerick_2020/ 
-* The slides are created with [Remarkjs](https://remarkjs.com) and [Xaringan](https://slides.yihui.org/xaringan).
-* Press **h** for help.
-* References, links to source code, are in the presentation speaker notes (press **p**).
-
+* The slides are created with [xaringan](https://slides.yihui.org/xaringan).
+* Links to resources, references, source code, etc., are in the presentation speaker notes.
+  * Press **p** to see speaker notes.
+  * Press **h** for slides help.
 
 ???
 
-### references
+### References, links
 
-1. Title page photo by [Luke Richardson](https://unsplash.com/s/photos/luke-richardson) on [Unsplash](https://unsplash.com/).
-
+1. [xaringan](https://github.com/yihui/xaringan) create slideshows with [remark.js](http://remarkjs.com/) and [R Markdown](https://bookdown.org/yihui/rmarkdown/xaringan.html).
 
 
 ---
 
-# Trees 2
+# Tree data structure
 
-### Trees are
+.pull-left[
+* A 'tree' is an connected, ordered, hierarchical data structure 
+* Trees consist of units called `nodes`
+* Each node is connected to <u>one</u> `parent` node in the level above 
+  * the `root` (base) node uniquely has no parent
+* A node can be connected to any number of `child` nodes in the level below
+  * Nodes without children are called `leaf` nodes
+* Trees are recursive, each child node is a sub-tree itself
+]
 
-* connected, hierarchical data structure consisting of units called `nodes`
-* a node has <u>one</u> `parent` node in the level above and `child` nodes in the level below
-* the tree starts at the `root` node, which uniquely has no parent
-* trees are recursive, each child node is a sub-tree itself
-* nodes without children represent the end of the tree, and are called `leaf` nodes
+.pull-right[
+  ![World selection tree](assets/world-selection-tree.png)
+]
 
 
-
-* social and political structures
 
 ???
 
@@ -80,7 +133,10 @@ Even data that isn't naturally hierarchical can be transformed into a hierarchy.
 
 social and political structures
 
-### references
+### References, links
+
+1. [World selection tree](https://github.com/qwilka/PyCon_Limerick_2020/tree/master/examples/Vega) image created with [Vega](https://vega.github.io/vega/docs/transforms/tree/)
+
 
 
 ---
