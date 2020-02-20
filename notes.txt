@@ -5,6 +5,11 @@ bookdown::render_book('index.Rmd', 'xaringan::moon_reader')
 /home/develop/local/anaconda3/envs/rstats/lib/R/library/xaringan/rmarkdown/templates/xaringan/resources
 ratio: "16:9"
 
+
+build slides
+============
+bookdown::render_book('trees_in_Python.html', 'xaringan::moon_reader')
+
 Rmarkdown
 ===========
 https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-RStudio#templates
