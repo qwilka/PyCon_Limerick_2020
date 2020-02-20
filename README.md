@@ -7,4 +7,16 @@ Tree data structures are pervasive in computing, they enable us to organise info
 
 
 
-https://qwilka.github.io/PyCon_Limerick_2020/
+
+
+### Links
+
+ 1. [Presentation slides](https://qwilka.github.io/PyCon_Limerick_2020/)
+ 1. [Blog post](https://qwilka.github.io/talk/2020-02-29_pycon_limerick/) with details about the conference and my talk
+ 1. [PyCon Limerick 2020](https://pyconlimerick.github.io/) conference website
+ 1. [vntree](https://github.com/qwilka/vntree) repository on GitHub
+
+
+ <h4>Links</h4>
+
+
