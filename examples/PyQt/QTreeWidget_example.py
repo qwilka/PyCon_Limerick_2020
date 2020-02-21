@@ -1,9 +1,8 @@
 """
 Copyright © 2020 Stephen McEntee
 Licensed under the MIT license. 
-See LICENSE file for details https://github.com/qwilka/data-visualizer-2015/blob/master/LICENSE
+https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/LICENSE
 """
-
 import sys
 import os
 import json
@@ -34,7 +33,10 @@ class TreeWidget(QTreeWidget):
         self.setDragEnabled(True)
         self.setDropIndicatorShown(True)
         if datadict:
-            self.tree_from_dict(datadict)
+            if isinstance(datadict, dict) and "name" in datadict:
+                self.tree_from_dict(datadict, datadict["name"])
+            else:
+                self.tree_from_dict(datadict)
             ####self.datadict = datadict
         else:
             self.datadict = {"_childs":[]}
@@ -202,11 +204,47 @@ if __name__ == '__main__':
     import pprint
     app = QApplication(sys.argv)
     if True:
-        dict_ = {"name":"rootLevel", "_childs":[{"name":"child10"},{"name":"child20"},{"name":"child1"}, {"name":"child2"}, {"name":"child3", "_childs":[{"name":"child4"}, {"name":"child5"}]} ]}
+        #dict_ = {"name":"rootLevel", "_childs":[{"name":"child10"},{"name":"child20"},{"name":"child1"}, {"name":"child2"}, {"name":"child3", "_childs":[{"name":"child4"}, {"name":"child5"}]} ]}
+        dict_ = {
+            "name": "The World",
+            "_childs" : [
+                {
+                    "name": "Europe",
+                    "_childs": [
+                        {"name": "Belgium"},
+                        {"name": "Greece"},
+                        {
+                            "name": "Scandinavia",
+                            "_childs": [
+                                {
+                                    "name": "Denmark",
+                                    "_childs": [
+                                        {"name": "Faroe Islands"},
+                                        {"name": "Greenland"},
+                                    ]
+                                },
+                                {"name": "Sweden"},
+                                {"name": "Norway"},
+                                {"name": "Iceland"},
+                                {"name": "Finland"},
+                            ]
+                        },
+                        {"name": "Spain"},
+                    ]
+                },
+                {
+                    "name": "South America",
+                    "_childs": [
+                        {"name": "Chile"}
+                    ]
+                },                
+            ]
+        }
     else:
         fpath = QFileDialog.getOpenFileName(None, 'Open file', 
                         '.', "JSON (*.json);;All files (*.*)")
-        with open(str(fpath), 'r') as jfile:
+        #print("fpath=", fpath)
+        with open(str(fpath[0]), 'r') as jfile:
             dict_ = json.load(jfile)
     mainwindow =  TreeDialog(None, dict_)      # TreeWidget(None, dict_)  
     mainwindow.show()

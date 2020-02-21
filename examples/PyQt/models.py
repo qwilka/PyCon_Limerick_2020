@@ -204,10 +204,14 @@ def fstreemodel_from_JSON(filepath):
 if __name__ == "__main__":
     import sys
     from PyQt5.QtWidgets import QApplication, QTreeView  
-    from nodes import tree_from_dict, VnNode
+    from nodes import tree_from_dict, VnNode, vntree_from_vndict
     from file_system_tree import make_file_system_tree
 
-    if False:
+    DICTIONARY = False
+    FILE_SYSTEM_TREE = False
+    COUNTRIES = True
+
+    if DICTIONARY:
         dtree = {'First name': 'Maximus',
             'Last name': 'Mustermann',
             'Nickname': 'Max',
@@ -226,11 +230,49 @@ if __name__ == "__main__":
         print(treenodes.get_data())
         model = TreeModel(treenodes)
         print(treenodes.to_texttree())
-    else:
+    elif FILE_SYSTEM_TREE:
         treenodes = make_file_system_tree('../')
         model = VnTreeModel(treenodes)
         print(treenodes.name)
         print(treenodes.get_data())
+    elif COUNTRIES:
+        dict_ = {
+            "name": "The World",
+            "_childs" : [
+                {
+                    "name": "Europe",
+                    "_childs": [
+                        {"name": "Belgium"},
+                        {"name": "Greece"},
+                        {
+                            "name": "Scandinavia",
+                            "_childs": [
+                                {
+                                    "name": "Denmark",
+                                    "_childs": [
+                                        {"name": "Faroe Islands"},
+                                        {"name": "Greenland"},
+                                    ]
+                                },
+                                {"name": "Sweden"},
+                                {"name": "Norway"},
+                                {"name": "Iceland"},
+                                {"name": "Finland"},
+                            ]
+                        },
+                        {"name": "Spain"},
+                    ]
+                },
+                {
+                    "name": "South America",
+                    "_childs": [
+                        {"name": "Chile"}
+                    ]
+                },                
+            ]
+        }
+        rootnode = vntree_from_vndict(dict_)
+        model = VnTreeModel(rootnode)
     app = QApplication(sys.argv)
     treeView = QTreeView()
     treeView.show()

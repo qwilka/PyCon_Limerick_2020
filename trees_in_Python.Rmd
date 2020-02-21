@@ -141,7 +141,7 @@ social and political structures
 
 ---
 
-# List Tree
+# List tree with data
 
 `list-node API: [<node name>: str, <data>: any, <child node>: list-node, ...]`
 
@@ -168,50 +168,11 @@ namerica.append( ["Canada", {"population":37742154}] )
 pprint.pprint(root, indent=4, compact=True)
 ```
 
----
-
-# One Line Tree
-
-.pull-left[
-```python
-from collections import defaultdict
-
-*def tree(): return defaultdict(tree)
-
-root = tree()
-root["The World"]
-root["The World"]["population"] = 7762609412
-root["The World"]["Europe"]
-root["The World"]["Europe"]["Scandinavia"]
-root["The World"]["Europe"]["Scandinavia"]["Denmark"]
-root["The World"]["Europe"]["Scandinavia"]["Denmark"]["population"] = 5792202
-root["The World"]["Europe"]["Scandinavia"]["Sweden"]
-root["The World"]["Europe"]["Scandinavia"]["Sweden"]["population"] = 10099265
-root["The World"]["North America"]
-root["The World"]["North America"]["Canada"]
-root["The World"]["North America"]["Canada"]["population"] = 37742154
-
-import json
-print(json.dumps(root, indent=2))
-```
-]
-
-
---
-
-.pull-right[
-```{python, echo=FALSE, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-show_onelinetree_example()
-```
-]
-
 ???
 
-### references
+### References, links
 
-1. GitHub Gist [hrldcpr/tree.md](https://gist.github.com/hrldcpr/2012250) «One-line Tree in Python»
-1. [Jeff Khupp 2013 article](https://jeffknupp.com/blog/2013/02/14/drastically-improve-your-python-understanding-pythons-execution-model/) describes a similar "auto-vivifying dictionary that operates like a trie"
-1. Source code 
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/list_tree_with_data.py
 
 ---
 
@@ -273,7 +234,7 @@ for node in reversed(first):
 
 ???
 
-### references
+### References, links
 
 1. [Linked list](https://en.wikipedia.org/wiki/Linked_list) article on Wikipedia.
 1. [linked_list.py](https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/linked_list.py) source code on Github.
@@ -367,12 +328,122 @@ for node in reversed(root):
 
 ???
 
-### references
+### References, links
 
 1. [Linked list](https://en.wikipedia.org/wiki/Linked_list) article on Wikipedia.
 1. [linked_list.py](https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/linked_list.py) source code on Github.
 
 
+---
+
+# One Line Tree
+
+.pull-left[
+```python
+from collections import defaultdict
+
+*def tree(): return defaultdict(tree)
+
+root = tree()
+root["The World"]
+root["The World"]["population"] = 7762609412
+root["The World"]["Europe"]
+root["The World"]["Europe"]["Scandinavia"]
+root["The World"]["Europe"]["Scandinavia"]["Denmark"]
+root["The World"]["Europe"]["Scandinavia"]["Denmark"]["population"] = 5792202
+root["The World"]["Europe"]["Scandinavia"]["Sweden"]
+root["The World"]["Europe"]["Scandinavia"]["Sweden"]["population"] = 10099265
+root["The World"]["North America"]
+root["The World"]["North America"]["Canada"]
+root["The World"]["North America"]["Canada"]["population"] = 37742154
+
+import json
+print(json.dumps(root, indent=2))
+```
+]
+
+
+--
+
+.pull-right[
+```{python, echo=FALSE, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+show_onelinetree_example()
+```
+]
+
+???
+
+### References, links
+
+1. GitHub Gist [hrldcpr/tree.md](https://gist.github.com/hrldcpr/2012250) «One-line Tree in Python»
+1. [Jeff Khupp 2013 article](https://jeffknupp.com/blog/2013/02/14/drastically-improve-your-python-understanding-pythons-execution-model/) describes a similar "auto-vivifying dictionary that operates like a trie"
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/one_line_tree.py
+
+
+---
+
+# Dataclass Tree
+
+.pull-left[
+```python
+from dataclasses import dataclass, field
+from typing import List, Dict, Any
+
+
+@dataclass
+class DataclassNode:
+    name: str
+    children: List[Any] = field(default_factory=lambda : [])
+    data: Dict = field(default_factory=lambda : {})
+
+    def add_child(self, childnode):
+        self.children.append(childnode)
+        return childnode
+    
+    def show(self, indent=2, _pre=""):
+        print(_pre + self.name)
+        for _c in self.children:
+            _c.show(indent, _pre=_pre+" "*indent)
+```
+]
+
+--
+
+.pull-right[
+```python
+root = DataclassNode("World", data={"population":7762609412})
+europe = root.add_child( DataclassNode("Europe") )
+scandinavia = europe.add_child( DataclassNode("Scandinavia") )
+scandinavia.add_child( DataclassNode("Denmark", data={"population":5792202}) )
+scandinavia.add_child( DataclassNode("Sweden", data={"population":10099265}) )
+scandinavia.add_child( DataclassNode("Norway", data={"population":5421241}) )
+namerica = root.add_child( DataclassNode("North America") )
+namerica.add_child( DataclassNode("Canada", data={"population":37742154}) )
+root.show()
+```
+{{content}}
+]
+
+--
+
+```python
+World
+  Europe
+    Scandinavia
+      Denmark
+      Sweden
+      Norway
+  North America
+    Canada
+```
+{{content}}
+
+
+???
+
+### References, links
+
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/dataclass_tree.py
 
 ---
 class: middle, center, notitletop
