@@ -445,6 +445,115 @@ World
 
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/dataclass_tree.py
 
+
+---
+
+# GUI widget - tkinter Treeview
+
+.pull-left[
+```python
+from tkinter import *
+from tkinter.ttk import *
+
+app = Tk()
+tree = Treeview(app)  # tkinter.ttk
+
+root = tree.insert("", 0, text="The World")
+europe = tree.insert(root, "end", text="Europe")
+tree.insert(europe, "end", text="Belgium")
+...
+
+tree.pack(fill=BOTH, expand=True)
+app.mainloop()
+```
+]
+
+.pull-right[
+  ![examples/tkinter/ttk_treeview_basic.py](assets/ttk_treeview.png)
+]
+
+???
+
+### References, links
+
+1. General references.
+
+---
+
+# GUI widget - PyQt QTreeWidget
+
+.pull-left[
+```python
+import sys
+from PyQt5.QtWidgets import QTreeWidget, QTreeWidgetItem, QApplication, QWidget, QVBoxLayout 
+
+app = QApplication(sys.argv)
+
+tree = QTreeWidget()
+...
+
+root = QTreeWidgetItem(tree, ['The World'])
+europe = QTreeWidgetItem(root, ['Europe'])
+QTreeWidgetItem(europe, ['Belgium', "Brussels", "11515793"])
+...
+
+sys.exit(app.exec_())
+```
+]
+
+.pull-right[
+  ![examples/examples/PyQt/QTreeWidget_example.py](assets/QTreeWidget_example.png)
+]
+
+???
+
+### References, links
+
+1. General references.
+
+
+---
+
+# GUI widget - PyQt QTreeView
+
+.pull-left[
+```python
+from PyQt5.QtWidgets import QTreeView, QApplication 
+from PyQt5.QtCore import QAbstractItemModel, QModelIndex, Qt
+
+class Node:
+  def __init__(self, name, parent=None)
+  ...
+
+class TreeModel(QAbstractItemModel):
+  def __init__(self, rootNode, parent=None)
+  ...
+
+app = QApplication(sys.argv)
+
+rootnode = Node("The World")
+europe = Node("Europe", rootnode)
+Node("Belgium", europe)
+...
+model = TreeModel(rootnode)
+
+treeView = QTreeView()
+treeView.setModel(model)
+
+sys.exit(app.exec_())
+```
+]
+
+.pull-right[
+  ![examples/PyQt/QTreeView_example.py](assets/QTreeView_example.png)
+]
+
+???
+
+### References, links
+
+1. General references.
+
 ---
 class: middle, center, notitletop
 background-image: url(assets/Darwin_Tree_1837.png)
@@ -456,6 +565,6 @@ background-size: cover
 
 ???
 
-### references
+### References, links
 
 1. General references.

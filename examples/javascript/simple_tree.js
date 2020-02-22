@@ -3,7 +3,7 @@ Simple tree class in Javascript.
 
 Command to run:
 
-node simple_tree.js
+    node simple_tree.js
 
 
 Copyright © 2020 Stephen McEntee

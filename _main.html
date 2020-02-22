@@ -175,6 +175,11 @@ social and political structures
         ['Canada', {'population': 37742154}]]]
 ```
 
+???
+
+### References, links
+
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/list_tree_with_data.py
 
 ---
 
@@ -214,7 +219,7 @@ class LLnode:
 &gt;&gt;&gt; sec = LLnode('Second Node', first)
 &gt;&gt;&gt; third = LLnode(3, sec)
 &gt;&gt;&gt; third.append( LLnode(4.0, None) )
-&lt;examples.linked_list.LLnode object at 0x7f0043c2df90&gt;
+&lt;examples.linked_list.LLnode object at 0x7f0043c48c90&gt;
 ```
 {{content}}
 ]
@@ -261,7 +266,7 @@ First Node
 ```python
 &gt;&gt;&gt; root = LLnode('Stephen Dedalus', None)
 &gt;&gt;&gt; root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')).append(LLnode('Sallins')).append(LLnode('County Kildare')).append(LLnode('Ireland')).append(LLnode('Europe')).append(LLnode('The World')).append(LLnode('The Universe'))
-&lt;examples.linked_list.LLnode object at 0x7f0043c3a650&gt;
+&lt;examples.linked_list.LLnode object at 0x7f0043c24190&gt;
 ```
 
 --
@@ -332,7 +337,7 @@ class Node:
 &gt;&gt;&gt; child1 = Node('First child', root)
 &gt;&gt;&gt; child2 = Node('2nd child', root, {"n":123})
 &gt;&gt;&gt; child1.add_child( Node("grand-child", None, {}) )
-&lt;vntree.node.Node object at 0x7f0043c3a710&gt;
+&lt;vntree.node.Node object at 0x7f0043c8d290&gt;
 ```
 {{content}}
 ]
@@ -503,6 +508,115 @@ World
 
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/dataclass_tree.py
 
+
+---
+
+# GUI widget - tkinter Treeview
+
+.pull-left[
+```python
+from tkinter import *
+from tkinter.ttk import *
+
+app = Tk()
+tree = Treeview(app)  # tkinter.ttk
+
+root = tree.insert("", 0, text="The World")
+europe = tree.insert(root, "end", text="Europe")
+tree.insert(europe, "end", text="Belgium")
+...
+
+tree.pack(fill=BOTH, expand=True)
+app.mainloop()
+```
+]
+
+.pull-right[
+  ![examples/tkinter/ttk_treeview_basic.py](assets/ttk_treeview.png)
+]
+
+???
+
+### References, links
+
+1. General references.
+
+---
+
+# GUI widget - PyQt QTreeWidget
+
+.pull-left[
+```python
+import sys
+from PyQt5.QtWidgets import QTreeWidget, QTreeWidgetItem, QApplication, QWidget, QVBoxLayout 
+
+app = QApplication(sys.argv)
+
+tree = QTreeWidget()
+...
+
+root = QTreeWidgetItem(tree, ['The World'])
+europe = QTreeWidgetItem(root, ['Europe'])
+QTreeWidgetItem(europe, ['Belgium', "Brussels", "11515793"])
+...
+
+sys.exit(app.exec_())
+```
+]
+
+.pull-right[
+  ![examples/examples/PyQt/QTreeWidget_example.py](assets/QTreeWidget_example.png)
+]
+
+???
+
+### References, links
+
+1. General references.
+
+
+---
+
+# GUI widget - PyQt QTreeView
+
+.pull-left[
+```python
+from PyQt5.QtWidgets import QTreeView, QApplication 
+from PyQt5.QtCore import QAbstractItemModel, QModelIndex, Qt
+
+class Node:
+  def __init__(self, name, parent=None)
+  ...
+
+class TreeModel(QAbstractItemModel):
+  def __init__(self, rootNode, parent=None)
+  ...
+
+app = QApplication(sys.argv)
+
+rootnode = Node("The World")
+europe = Node("Europe", rootnode)
+Node("Belgium", europe)
+...
+model = TreeModel(rootnode)
+
+treeView = QTreeView()
+treeView.setModel(model)
+
+sys.exit(app.exec_())
+```
+]
+
+.pull-right[
+  ![examples/PyQt/QTreeView_example.py](assets/QTreeView_example.png)
+]
+
+???
+
+### References, links
+
+1. General references.
+
 ---
 class: middle, center, notitletop
 background-image: url(assets/Darwin_Tree_1837.png)
@@ -514,7 +628,7 @@ background-size: cover
 
 ???
 
-### references
+### References, links
 
 1. General references.
 

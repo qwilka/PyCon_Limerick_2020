@@ -3,8 +3,8 @@ Simple tree class in Typescript.
 
 Commands to build and run:
 
-tsc --target es6 ts_simple_tree.ts
-node ts_simple_tree.js
+    tsc --target es6 ts_simple_tree.ts
+    node ts_simple_tree.js
 
 Tested with 
 tsc Version 3.7.2
