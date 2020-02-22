@@ -1,7 +1,7 @@
 """
 Copyright © 2020 Stephen McEntee
 Licensed under the MIT license. 
-https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/LICENSE
+https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/LICENSE
 """
 import sys
 import os

@@ -1,3 +1,8 @@
+"""
+Copyright © 2020 Stephen McEntee
+Licensed under the MIT license. 
+https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/LICENSE
+"""
 
 def quicktree(depth, nchildren=2):
     """Make a fully developed tree based on nested lists.

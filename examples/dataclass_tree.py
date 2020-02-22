@@ -1,3 +1,8 @@
+"""
+Copyright © 2020 Stephen McEntee
+Licensed under the MIT license. 
+https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/LICENSE
+"""
 from dataclasses import dataclass, field
 from typing import List, Dict, Any
 

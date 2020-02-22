@@ -6,66 +6,84 @@ Commands to build and run:
 tsc --target es6 ts_simple_tree.ts
 node ts_simple_tree.js
 
-Tested with
+Tested with 
 tsc Version 3.7.2
 node v10.13.0
 
 Copyright © 2020 Stephen McEntee
-Licensed under the GNU Affero General Public License v3.0.
+Licensed under the GNU Affero General Public License v3.0. 
 See LICENSE file for details:
 https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/javascript/LICENSE
 
 Includes code sourced from https://github.com/aureooms/js-itertools
 Licence https://github.com/aureooms/js-itertools/blob/master/LICENSE
 */
+
+
 // https://github.com/aureooms/js-itertools/blob/master/js/src/map/chain.js
-let iterchain = function* (iterables) {
-    for (let iterable of iterables)
-        yield* iterable;
-};
+let iterchain = function* ( iterables: any ) {
+    for ( let iterable of iterables ) yield* iterable
+}
+
+
 // cannot use name «Node»
 // use error TS2300: Duplicate identifier 'Node'.
 class TsNode {
-    constructor(name, parent = null, data = { vn_type: "default" }) {
-        this.name = name;
-        this.parent = parent;
-        this.childs = [];
+    name: string;
+    parent: TsNode | null;
+    childs: any;
+
+    constructor(name: string, parent: TsNode | null =null, data={vn_type: "default"}) {
+        this.name = name
+        this.parent = parent
+        this.childs = []
         if (parent !== null) {
-            parent.add_child(this);
+            parent.add_child(this)
         }
     }
+
     *traverse() {
         yield this;
         for (let child of iterchain(this.childs)) {
             yield child;
         }
     }
+
     [Symbol.iterator]() {
         return this.traverse();
     }
-    add_child(newchild) {
-        this.childs.push(newchild);
-        newchild.parent = this;
+
+
+    add_child (newchild: TsNode) {
+        this.childs.push(newchild)
+        newchild.parent = this
     }
-    toTextTree(tabLevel = -1) {
+
+
+    toTextTree(tabLevel=-1) {
         let nodetext = "";
         tabLevel += 1;
-        for (let i = 0; i < tabLevel; i++) {
+        for (let i =0; i < tabLevel; i++) {
             nodetext += ".   ";
         }
-        nodetext += "|---" + this.name + "\n";
+        nodetext += "|---" + this.name + "\n";   
         for (let child of this.childs) {
             nodetext += child.toTextTree(tabLevel);
         }
         return nodetext;
     }
+
 }
-// TESTS: just set to true|false, require.main===module does not work with Babel
-let run_tests = true;
+
+
+// TESTS: just set to true|false
+let run_tests = true
 if (run_tests) {
-    console.log("Launching tests for ", "__filename");
-    runTests();
+    console.log("Launching tests for ", "__filename")
+    runTests()
 }
+
+
 function runTests() {
     let rootnode = new TsNode("root node");
     let node1 = new TsNode("node1 level1", rootnode);
@@ -81,8 +99,7 @@ function runTests() {
     node21.add_child(node212);
     node21.add_child(new TsNode("node213 (level3) parentless"));
     let node3 = new TsNode("node3 (level1)", rootnode);
-    for (let node of rootnode)
-        console.log(node.name); // iterate over tree
+    for (let node of rootnode)  console.log(node.name) // iterate over tree
     console.log(rootnode.toTextTree());
     //console.log(JSON.stringify(rootnode.toJsTree(), null, 2));
     //console.log(node2.toTextTree());
@@ -90,3 +107,6 @@ function runTests() {
     // let newnode = new TsNode("", null, rootnode.toTreeObj()) // create new tree using Obj from first tree
     // console.log(newnode.toTextTree())
 }
+
+
+ 
