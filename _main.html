@@ -136,6 +136,65 @@ social and political structures
 1. [World selection tree](https://github.com/qwilka/PyCon_Limerick_2020/tree/master/examples/Vega) image created with [Vega](https://vega.github.io/vega/docs/transforms/tree/)
 
 
+---
+
+# A very basic list-based tree
+
+.pull-left[
+```python
+rootnode = list()
+
+europe = list()
+rootnode.append(europe)
+
+europe.append("Belgium")
+europe.append("Greece")
+
+scandinavia = list()
+europe.append(scandinavia)
+europe.append("Spain")
+
+denmark = list()
+scandinavia.append(denmark)
+scandinavia.extend(["Norway", "Sweden", "Iceland", "Finland"])
+
+denmark.extend(["Faroe Islands", "Greenland"])
+
+samerica = list()
+rootnode.append(samerica)
+samerica.append("Chile")
+```
+]
+
+--
+
+.pull-right[
+```python
+pprint.pprint(rootnode, indent=2, width=40)
+
+[ [ 'Belgium',
+    'Greece',
+    [ ['Faroe Islands', 'Greenland'],
+      'Norway',
+      'Sweden',
+      'Iceland',
+      'Finland'],
+    'Spain'],
+  ['Chile']]
+
+```
+]
+
+
+
+???
+
+$ python list_tree_simple.py 
+
+### References, links
+
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/list_tree_with_data.py
+
 
 ---
 
@@ -219,7 +278,7 @@ class LLnode:
 &gt;&gt;&gt; sec = LLnode('Second Node', first)
 &gt;&gt;&gt; third = LLnode(3, sec)
 &gt;&gt;&gt; third.append( LLnode(4.0, None) )
-&lt;examples.linked_list.LLnode object at 0x7f0043c48c90&gt;
+&lt;examples.linked_list.LLnode object at 0x7febb1e7c050&gt;
 ```
 {{content}}
 ]
@@ -266,7 +325,7 @@ First Node
 ```python
 &gt;&gt;&gt; root = LLnode('Stephen Dedalus', None)
 &gt;&gt;&gt; root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')).append(LLnode('Sallins')).append(LLnode('County Kildare')).append(LLnode('Ireland')).append(LLnode('Europe')).append(LLnode('The World')).append(LLnode('The Universe'))
-&lt;examples.linked_list.LLnode object at 0x7f0043c24190&gt;
+&lt;examples.linked_list.LLnode object at 0x7febb1e8d050&gt;
 ```
 
 --
@@ -337,7 +396,7 @@ class Node:
 &gt;&gt;&gt; child1 = Node('First child', root)
 &gt;&gt;&gt; child2 = Node('2nd child', root, {"n":123})
 &gt;&gt;&gt; child1.add_child( Node("grand-child", None, {}) )
-&lt;vntree.node.Node object at 0x7f0043c8d290&gt;
+&lt;vntree.node.Node object at 0x7febb1e7c390&gt;
 ```
 {{content}}
 ]
@@ -511,7 +570,31 @@ World
 
 ---
 
-# GUI widget - tkinter Treeview
+# Tree modules in Python
+
+* [anytree](https://github.com/c0fec0de/anytree) 
+  * simple, lightweight and extensible tree data structure
+
+* [treelib](https://github.com/caesar0301/treelib)
+  * an efficient implementation of tree data structure in python 2/3
+
+* [vntree](https://github.com/qwilka/vntree) (presenter's own module)
+  * a simple tree data structure in Python
+  * development still in alpha-phase
+
+
+???
+
+### References, links
+
+1. anytree https://github.com/c0fec0de/anytree
+1. treelib https://github.com/caesar0301/treelib
+1. vntree https://github.com/qwilka/vntree
+
+
+---
+
+# GUI widget - tkinter ttk.Treeview
 
 .pull-left[
 ```python
@@ -539,11 +622,12 @@ app.mainloop()
 
 ### References, links
 
-1. General references.
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/tkinter/ttk_treeview_basic.py
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/tkinter/ttk_treeview_OO.py
 
 ---
 
-# GUI widget - PyQt QTreeWidget
+# PyQt widget - QTreeWidget
 
 .pull-left[
 ```python
@@ -572,12 +656,13 @@ sys.exit(app.exec_())
 
 ### References, links
 
-1. General references.
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/QTreeWidget_basic.py
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/QTreeWidget_OO.py
 
 
 ---
 
-# GUI widget - PyQt QTreeView
+# PyQt widget - QTreeView
 
 .pull-left[
 ```python
@@ -615,7 +700,7 @@ sys.exit(app.exec_())
 
 ### References, links
 
-1. General references.
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/QTreeView_example.py
 
 ---
 class: middle, center, notitletop

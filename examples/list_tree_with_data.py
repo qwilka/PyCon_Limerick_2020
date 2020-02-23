@@ -3,6 +3,10 @@ Copyright © 2020 Stephen McEntee
 Licensed under the MIT license. 
 https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/LICENSE
 """
+
+description = """Create a list-based tree with data and children,
+and print an example."""
+
 import json
 from pprint import pprint
 

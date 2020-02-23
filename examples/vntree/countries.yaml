@@ -1,0 +1,78 @@
+- !Node &world
+  name: The World
+
+- !Node &europe
+  name: Europe
+  parent: *world
+
+- !Node &belgium
+  name: Belgium
+  parent: *europe
+  data:
+    capital: Brussels
+    population: 11515793
+- !Node &greece
+  name: Greece
+  parent: *europe
+  data:
+    capital: Athens
+    population: 10768477
+- !Node &scandinavia
+  name: Scandinavia
+  parent: *europe
+- !Node &spain
+  name: Spain
+  parent: *europe
+  data:
+    capital: Madrid
+    population: 46733038
+
+- !Node &denmark
+  parent: *scandinavia
+  data:
+    capital: Copenhagen
+    name: Denmark
+    population: 5822763
+- !Node &sweden
+  name: Sweden
+  parent: *scandinavia
+  data:
+    capital: Stockholm
+    population: 10302984
+- !Node &norway
+  name: Norway
+  parent: *scandinavia
+  data:
+    capital: Oslo
+    population: 5421241
+- !Node &iceland
+  name: Iceland
+  parent: *scandinavia
+  data:
+    capital: "Reykjav\xEDk"
+    population: 364260
+- !Node &finland
+  name: Finland
+  parent: *scandinavia
+  data:
+    capital: Helsinki
+    population: 5521158
+
+- !Node &faroeislands
+  parent: *denmark
+  data:
+    name: Faroe Islands
+- !Node &greenland
+  parent: *denmark
+  data:
+    name: Greenland
+
+- !Node &samerica
+  name: South America
+  parent: *world
+- !Node &chile
+  name: Chile
+  parent: *samerica
+  data:
+    capital: Santiago
+    population: 17574003
