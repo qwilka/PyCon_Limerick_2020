@@ -7,10 +7,15 @@ import itertools
 import os
 import sys
 
+description = """A simple tree data structure based on a Node class."""
+
 
 class Node:
-    """Node class for tree data structure.  
-    Ref: https://en.wikipedia.org/wiki/Tree_(data_structure)
+    """Node class for simple tree data structure.  
+
+    Refs:
+    https://en.wikipedia.org/wiki/Tree_(data_structure)
+    https://github.com/qwilka/vntree
     """
     def __init__(self, name, parent=None):
         self.name = name
@@ -25,9 +30,7 @@ class Node:
         
 
     def __str__(self):
-        _level = len(self.get_ancestors())
-        return "{} «{}» level={} coord={}".format(self.__class__.__name__, self.name, _level, self._coord)
-
+        return "{} «{}» level={} coord={}".format(self.__class__.__name__, self.name, self._level, self._coord)
 
     """
     https://docs.python.org/3/library/itertools.html
@@ -84,6 +87,9 @@ class Node:
             _node = _node.parent
         return tuple(_coord)
 
+    @property
+    def _level(self):
+        return len(self.get_ancestors())
 
     def to_texttree(self):
         treetext = ""
@@ -96,18 +102,37 @@ class Node:
 
 
 if __name__ == '__main__':
+    import argparse
 
-    SIMPLE_TREE = True
-    TOP_DOWN_TRAVERSAL = False
-    BOTTOM_UP_TRAVERSAL = False
+    aparser = argparse.ArgumentParser(description=description)
+    aparser.add_argument("case", help="Specify an example case to run.", 
+        nargs='?', default="basic",
+        choices=["basic", "traverse", "topdown", "bottomup"])
+    args = aparser.parse_args()
 
-    if SIMPLE_TREE:
-        rootnode = Node('root-node')
-        child = Node('child', rootnode)
-        gchild = child.add_child( Node('grand-child') )
-        gchild.add_child( Node('great-grand-child') )
-        print(rootnode.to_texttree())
-        rootnode._show_traversal = True
+    rootnode = Node('The World')
+    europe = Node('Europe', rootnode)
+    Node('Belgium', europe)
+    europe.add_child( Node('Greece') )
+    scandinavia = Node('Scandinavia', europe)
+    europe.add_child( Node('Spain') )
+    denmark = Node('Denmark', scandinavia)
+    scandinavia.add_child( Node('Sweden') )
+    Node('Norway', scandinavia)
+    Node('Faroe Islands', denmark)
+    denmark.add_child( Node("Greenland") )
+    samerica = Node('South America', rootnode)
+    Node('Chile', samerica)
+
+    print("\n", rootnode.to_texttree())
+
+    if args.case == "basic":
+        # $ python simple_tree.py basic 
+        pass
+    
+    if args.case == "traverse":
+        # $ python simple_tree.py traverse 
+        rootnode._show_traversal = False
         print("\nTree traverse top-down:")
         for node in rootnode:
             print(node)    
@@ -115,30 +140,16 @@ if __name__ == '__main__':
         for node in reversed(rootnode):
             print(node)
 
-
-    if TOP_DOWN_TRAVERSAL or BOTTOM_UP_TRAVERSAL:
-        rootnode   = Node('ROOT ("top" of the tree)')
-        Node("1st child (leaf node)", parent=rootnode)
-        child2 = Node("2nd child", rootnode)
-        Node("grand-child1 (leaf node)", child2)
-        Node("grand-child2 (leaf node)", child2)
-        child3 = Node("3rd child", rootnode)
-        Node("another child (leaf node)", rootnode)
-        grandchild3 = Node(parent=child3, name="grand-child3")
-        ggrandchild = Node("great-grandchild", grandchild3)
-        Node("great-great-grandchild (leaf node)", ggrandchild)
-        Node("great-grandchild2 (leaf node)", grandchild3)
-        print()
-        print(rootnode.to_texttree())
-
-    if TOP_DOWN_TRAVERSAL:
+    if args.case == "topdown":
+        # $ python simple_tree.py topdown 
         # switch-on tracing messages in __iter__ method:
         rootnode._show_traversal = True
         print("\nTree iterate top-down:")
         for node in rootnode:
             print(node)
 
-    if BOTTOM_UP_TRAVERSAL:
+    if args.case == "bottomup":
+        # $ python simple_tree.py bottomup 
         # switch-on tracing messages in __reversed__ method:
         rootnode._show_traversal = True
         print("\nTree iterate bottom-up:")

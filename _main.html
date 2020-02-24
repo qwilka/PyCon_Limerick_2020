@@ -135,6 +135,29 @@ social and political structures
 
 1. [World selection tree](https://github.com/qwilka/PyCon_Limerick_2020/tree/master/examples/Vega) image created with [Vega](https://vega.github.io/vega/docs/transforms/tree/)
 
+---
+
+# Tree modules in Python
+
+* [anytree](https://github.com/c0fec0de/anytree) 
+  * simple, lightweight and extensible tree data structure
+
+* [treelib](https://github.com/caesar0301/treelib)
+  * an efficient implementation of tree data structure in python 2/3
+
+* [vntree](https://github.com/qwilka/vntree) (presenter's own module)
+  * a simple tree data structure in Python
+  * development still in alpha-phase
+
+
+???
+
+### References, links
+
+1. anytree https://github.com/c0fec0de/anytree
+1. treelib https://github.com/caesar0301/treelib
+1. vntree https://github.com/qwilka/vntree
+
 
 ---
 
@@ -193,7 +216,7 @@ $ python list_tree_simple.py
 
 ### References, links
 
-1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/list_tree_with_data.py
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/list_tree_simple.py
 
 
 ---
@@ -238,6 +261,8 @@ $ python list_tree_simple.py
 
 ### References, links
 
+$ python list_tree_with_data.py
+
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/list_tree_with_data.py
 
 ---
@@ -278,7 +303,7 @@ class LLnode:
 &gt;&gt;&gt; sec = LLnode('Second Node', first)
 &gt;&gt;&gt; third = LLnode(3, sec)
 &gt;&gt;&gt; third.append( LLnode(4.0, None) )
-&lt;examples.linked_list.LLnode object at 0x7febb1e7c050&gt;
+&lt;examples.linked_list.LLnode object at 0x7f1016f97bd0&gt;
 ```
 {{content}}
 ]
@@ -314,6 +339,8 @@ First Node
 
 ### References, links
 
+$ python linked_list.py
+
 1. [Linked list](https://en.wikipedia.org/wiki/Linked_list) article on Wikipedia.
 1. [linked_list.py](https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/linked_list.py) source code on Github.
 
@@ -325,7 +352,7 @@ First Node
 ```python
 &gt;&gt;&gt; root = LLnode('Stephen Dedalus', None)
 &gt;&gt;&gt; root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')).append(LLnode('Sallins')).append(LLnode('County Kildare')).append(LLnode('Ireland')).append(LLnode('Europe')).append(LLnode('The World')).append(LLnode('The Universe'))
-&lt;examples.linked_list.LLnode object at 0x7febb1e8d050&gt;
+&lt;examples.linked_list.LLnode object at 0x7f101707bf50&gt;
 ```
 
 --
@@ -396,10 +423,22 @@ class Node:
 &gt;&gt;&gt; child1 = Node('First child', root)
 &gt;&gt;&gt; child2 = Node('2nd child', root, {"n":123})
 &gt;&gt;&gt; child1.add_child( Node("grand-child", None, {}) )
-&lt;vntree.node.Node object at 0x7febb1e7c390&gt;
+&lt;vntree.node.Node object at 0x7f101a234b90&gt;
 ```
 {{content}}
 ]
+
+--
+
+
+```python
+&gt;&gt;&gt; root.show()
+| Root node
++--| First child
+.  +--| grand-child
+.  | 2nd child
+```
+{{content}}
 
 --
 
@@ -411,19 +450,6 @@ Root node
 First child
 grand-child
 2nd child
-```
-{{content}}
-
---
-
-
-```python
-&gt;&gt;&gt; for node in reversed(root):
-&gt;&gt;&gt;     print(node.name)
-2nd child
-grand-child
-First child
-Root node
 ```
 {{content}}
 
@@ -495,6 +521,8 @@ print(json.dumps(root, indent=2))
 
 ???
 
+$ python one_line_tree.py
+
 ### References, links
 
 1. GitHub Gist [hrldcpr/tree.md](https://gist.github.com/hrldcpr/2012250) «One-line Tree in Python»
@@ -565,31 +593,210 @@ World
 
 ### References, links
 
+$ python dataclass_tree.py
+
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/dataclass_tree.py
 
 
 ---
 
-# Tree modules in Python
+# Tree from dictionary (with vntree)
 
-* [anytree](https://github.com/c0fec0de/anytree) 
-  * simple, lightweight and extensible tree data structure
+.pull-left[
+```python
+theworld = {"name":"The World",
+  "childs" : [
+    {
+      "name": "Europe",
+      "childs": [
+        {
+          "name": "Belgium",
+          "data": {
+              "capital": "Brussels",
+              "population": 11515793
+          }
+        },
+        {
+          "name": "Greece",
+          "data": {
+              "capital": "Athens",
+              "population": 10768477
+          }
+        },
+...
+]]}
+```
+]
 
-* [treelib](https://github.com/caesar0301/treelib)
-  * an efficient implementation of tree data structure in python 2/3
+--
 
-* [vntree](https://github.com/qwilka/vntree) (presenter's own module)
-  * a simple tree data structure in Python
-  * development still in alpha-phase
+.pull-right[
+```python
+from vntree import Node
+dicttree = Node(treedict=theworld)
+dicttree.show()
+```
+{{content}}
+]
+
+--
+
+```python
+| The World
++--| Europe
+.  +--| Belgium
+.  .  | Greece
+.  .  | Scandinavia
+.  .  +--| Denmark
+.  .  .  +--| Faroe Islands
+.  .  .  .  | Greenland
+.  .  .  | Sweden
+.  .  .  | Norway
+.  .  .  | Iceland
+.  .  .  | Finland
+.  .  | Spain
+.  | South America
+.  +--| Chile
+```
+
+{{content}}
+
 
 
 ???
 
 ### References, links
 
-1. anytree https://github.com/c0fec0de/anytree
-1. treelib https://github.com/caesar0301/treelib
-1. vntree https://github.com/qwilka/vntree
+$ python json_import.py
+
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/vntree/json_import.py
+
+
+---
+
+# Tree from JSON (vntree)
+
+.pull-left[
+```python
+dicttree.to_json("countries.json")
+
+jsontree = Node.from_json("countries.json")
+jsontree.show()
+```
+{{content}}
+]
+
+--
+
+```python
+| The World
++--| Europe
+.  +--| Belgium
+.  .  | Greece
+.  .  | Scandinavia
+.  .  +--| Denmark
+.  .  .  +--| Faroe Islands
+.  .  .  .  | Greenland
+.  .  .  | Sweden
+.  .  .  | Norway
+.  .  .  | Iceland
+.  .  .  | Finland
+.  .  | Spain
+.  | South America
+.  +--| Chile
+```
+
+
+
+--
+
+.pull-right[
+```python
+comp = dicttree.tree_compare(jsontree)
+print("jsontree round-trip", 
+f"\ncomparison with dicttree = {comp}")
+```
+
+```
+jsontree round-trip
+comparison with dicttree = 1.0
+```
+
+]
+
+---
+
+# Tree from YAML (vntree)
+
+
+.pull-left[
+```yaml
+- !Node &amp;world
+  name: The World
+
+- !Node &amp;europe
+  name: Europe
+  parent: *world
+
+- !Node &amp;belgium
+  name: Belgium
+  parent: *europe
+  data:
+    capital: Brussels
+    population: 11515793
+
+- !Node &amp;scandinavia
+  name: Scandinavia
+  parent: *europe
+
+- !Node &amp;denmark
+  parent: *scandinavia
+  data:
+    capital: Copenhagen
+    name: Denmark
+    population: 5822763
+```
+]
+
+--
+
+.pull-right[
+```python
+from vntree import Node
+rootnode = Node.yaml2tree("countries.yaml")
+rootnode.show()
+```
+{{content}}
+]
+
+--
+
+```python
+| The World
++--| Europe
+.  +--| Belgium
+.  .  | Greece
+.  .  | Scandinavia
+.  .  +--| Denmark
+.  .  .  +--| Faroe Islands
+.  .  .  .  | Greenland
+.  .  .  | Sweden
+.  .  .  | Norway
+.  .  .  | Iceland
+.  .  .  | Finland
+.  .  | Spain
+.  | South America
+.  +--| Chile
+```
+
+???
+
+### References, links
+
+$ python yaml_import.py
+
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/vntree/yaml_import.py
+
 
 
 ---
@@ -606,7 +813,11 @@ tree = Treeview(app)  # tkinter.ttk
 
 root = tree.insert("", 0, text="The World")
 europe = tree.insert(root, "end", text="Europe")
-tree.insert(europe, "end", text="Belgium")
+tree.insert(europe, "end", text="Belgium", values=("Brussels", 11515793))
+tree.insert(europe, "end", text="Greece", values=("Athens", 10768477))
+scandinavia = tree.insert(europe, "end", text="Scandinavia")
+denmark = tree.insert(scandinavia, "end", text="Denmark", values=("Copenhagen", 5822763))
+tree.insert(denmark, "end", text="Faroe Islands")
 ...
 
 tree.pack(fill=BOTH, expand=True)
@@ -621,6 +832,8 @@ app.mainloop()
 ???
 
 ### References, links
+
+% python ttk_treeview_basic.py 
 
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/tkinter/ttk_treeview_basic.py
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/tkinter/ttk_treeview_OO.py
@@ -701,6 +914,77 @@ sys.exit(app.exec_())
 ### References, links
 
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/QTreeView_example.py
+
+
+---
+
+# Decision Tree
+
+.pull-left[
+
+* Tree analysis for decision support
+* Based on calculating `expected value` for outcomes
+  * EV = NPV * probability
+  * consider full range of outcomes
+* Best for portfolio of similar assets
+  * Risk management
+{{content}}
+]
+--
+
+```python
+class DecisionNode(Node):
+  def __init__(self, name, parent=None, type="outcome", p=1, npv=0):
+  ...
+  @staticmethod
+  def calculate_ev(node):
+  ...
+
+rootnode = DecisionNode("Acquire and drill | Do not acquire?", type="decision")
+No_acq = DecisionNode("Do not acquire lease", rootnode, npv=0)
+tw1_chance = DecisionNode("Acquire and drill", rootnode, type="chance")
+tw1_large = DecisionNode("Large field", tw1_chance, p=0.05, npv=360)
+...
+```
+
+
+--
+
+.pull-right[
+```python
+list(map(rootnode.calculate_ev, reversed(rootnode)))
+print(rootnode.to_texttree())
+
+□---Acquire and drill | Do not acquire?; DECISION: «Acquire and drill»
+    |
+.   |---Do not acquire lease; p=1; NPV=0; EV=0
+.   ◯---Acquire and drill; EV=15.625
+.   .   ▷---Large field; p=0.05; NPV=360; EV=18.0
+.   .   ▷---Marginal field; p=0.05; NPV=110; EV=5.5
+.   .   ▷---Dry hole; p=0.9; NPV=-8.75; EV=-7.875
+            |
+.   .   .   □---Drill test well #2 | drop?; DECISION: «Drill test well #2»
+                |
+.   .   .   .   ◯---Drill test well #2; EV=-8.75
+.   .   .   .   .   ▷---Large field; p=0.075; NPV=350; EV=26.25
+.   .   .   .   .   ▷---Marginal field; p=0.075; NPV=100; EV=7.5
+.   .   .   .   .   ▷---Dry hole; p=0.85; NPV=-50; EV=-42.5
+.   .   .   .   |---Drop; p=1; NPV=-40; EV=-40
+```
+
+]
+
+
+???
+
+### References, links
+
+$ python decision_tree.py
+
+1. https://en.wikipedia.org/wiki/Decision_tree
+1. [Decision Analysis in Cost Engineering](http://www.maxvalue.com/DA_in_CE_20170329.pdf) John Schuyler, 2015
+
+
 
 ---
 class: middle, center, notitletop
