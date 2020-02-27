@@ -303,7 +303,7 @@ class LLnode:
 &gt;&gt;&gt; sec = LLnode('Second Node', first)
 &gt;&gt;&gt; third = LLnode(3, sec)
 &gt;&gt;&gt; third.append( LLnode(4.0, None) )
-&lt;examples.linked_list.LLnode object at 0x7f1016f97bd0&gt;
+&lt;examples.linked_list.LLnode object at 0x7fa7a6125f90&gt;
 ```
 {{content}}
 ]
@@ -352,7 +352,7 @@ $ python linked_list.py
 ```python
 &gt;&gt;&gt; root = LLnode('Stephen Dedalus', None)
 &gt;&gt;&gt; root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')).append(LLnode('Sallins')).append(LLnode('County Kildare')).append(LLnode('Ireland')).append(LLnode('Europe')).append(LLnode('The World')).append(LLnode('The Universe'))
-&lt;examples.linked_list.LLnode object at 0x7f101707bf50&gt;
+&lt;examples.linked_list.LLnode object at 0x7fa7a60b1810&gt;
 ```
 
 --
@@ -423,7 +423,7 @@ class Node:
 &gt;&gt;&gt; child1 = Node('First child', root)
 &gt;&gt;&gt; child2 = Node('2nd child', root, {"n":123})
 &gt;&gt;&gt; child1.add_child( Node("grand-child", None, {}) )
-&lt;vntree.node.Node object at 0x7f101a234b90&gt;
+&lt;vntree.node.Node object at 0x7fa7a60b4950&gt;
 ```
 {{content}}
 ]
@@ -940,10 +940,10 @@ class DecisionNode(Node):
   def calculate_ev(node):
   ...
 
-rootnode = DecisionNode("Acquire and drill | Do not acquire?", type="decision")
-No_acq = DecisionNode("Do not acquire lease", rootnode, npv=0)
-tw1_chance = DecisionNode("Acquire and drill", rootnode, type="chance")
-tw1_large = DecisionNode("Large field", tw1_chance, p=0.05, npv=360)
+root = DecisionNode("Acquire and drill | Do not acquire?", type="decision")
+DecisionNode("Do not acquire lease", root, npv=0)
+acq = DecisionNode("Acquire and drill", root, type="chance")
+tw1 = DecisionNode("Large field", acq, p=0.05, npv=360)
 ...
 ```
 
@@ -984,7 +984,47 @@ $ python decision_tree.py
 1. https://en.wikipedia.org/wiki/Decision_tree
 1. [Decision Analysis in Cost Engineering](http://www.maxvalue.com/DA_in_CE_20170329.pdf) John Schuyler, 2015
 
+---
 
+# Geo-spatial trees
+
+.pull-left[
+* Quadtree
+  * recursively divides a square area into 4 sub-domains
+  * used for 2-D spatial search
+  * `Pyqtree` pure Python module
+  * «octree» used for 3-D 
+* R-tree
+  * used for 2-D spatial search
+  * Python module `Rtree` (wraps libspatialindex)
+  * `rbush` (Javascript module)
+* scipy.spatial.KDTree
+]
+
+.pull-right[
+  ![Quadtree](assets/Quad_tree_bitmap.svg.png)
+
+  ![R-tree](assets/800px-R-tree.svg.png)
+]
+
+
+
+
+
+???
+
+### References, links
+
+$ python decision_tree.py
+
+1. Quadtree image https://commons.wikimedia.org/wiki/File:Quad_tree_bitmap.svg
+1. R-tree image by Skinkie, w:en:Radim Baca - Own work, Public Domain, https://commons.wikimedia.org/w/index.php?curid=9938400
+1. https://en.wikipedia.org/wiki/Quadtree
+1. https://github.com/karimbahgat/Pyqtree  Karim Bahgat
+1. https://en.wikipedia.org/wiki/R-tree
+1. https://github.com/Toblerity/Rtree  Toblerity project 
+1. https://github.com/mourner/rbush  Vladimir Agafonkin
+1. https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html
 
 ---
 class: middle, center, notitletop
