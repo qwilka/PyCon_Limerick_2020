@@ -138,6 +138,49 @@ social and political structures
 
 1. [World selection tree](https://github.com/qwilka/PyCon_Limerick_2020/tree/master/examples/Vega) image created with [Vega](https://vega.github.io/vega/docs/transforms/tree/)
 
+
+---
+
+# Example tree
+
+![World selection tree](assets/world-selection-tree-full.png)
+
+---
+
+# Example tree
+
+![root node](assets/world-selection-tree-full-1.png)
+
+---
+
+# Example tree
+
+![root node](assets/world-selection-tree-full-2.png)
+
+---
+
+# Example tree
+
+![root node](assets/world-selection-tree-full-3.png)
+
+---
+
+# Example tree
+
+![root node](assets/world-selection-tree-full-4.png)
+
+---
+
+# Example tree
+
+![root node](assets/world-selection-tree-full-5.png)
+
+---
+
+# Example tree
+
+![root node](assets/world-selection-tree-full-6.png)
+
 ---
 
 # Tree modules in Python
@@ -1035,7 +1078,7 @@ $ python decision_tree.py
 --
 
 * Many ways to create trees in Python
-  * `Node` based trees are canonical form
+  * `Node` based trees are the canonical form
 
 {{content}}
 
