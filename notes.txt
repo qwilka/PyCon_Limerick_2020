@@ -28,6 +28,22 @@ https://garthtarr.github.io/sydney_xaringan/#44
 https://ismayc.github.io/talks/ness-infer/slide_deck.html#1
 https://jenthompson.me/slides/rmedicine2018/rmedicine2018#1
 https://stackoverflow.com/questions/46408057/incremental-slides-do-not-work-with-a-two-column-layout
+https://galdebert.github.io/posts/remark-1/
+https://github.com/yihui/xaringan/issues/119
+https://github.com/gnab/remark/issues/183
+
+https://remarkjs.com/downloads/remark-latest.min.js
+
+---
+title: "xaringan-mathjax-local"
+output:
+  xaringan::moon_reader:
+    chakra: 'libs/remark-latest.min.js'
+    lib_dir: 'libs'
+    mathjax: null
+    nature:
+      beforeInit: 'libs/local.js'
+---
 
 
 knitr

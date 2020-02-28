@@ -3,6 +3,7 @@ ts_simple_tree.js
 .vscode/
 *.pflacs
 *.hdf5
+remark-latest.min.js
 
 # R Bookdown
 .Rhistory

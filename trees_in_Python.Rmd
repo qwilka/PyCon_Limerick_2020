@@ -5,6 +5,7 @@ author: "Stephen McEntee"
 date: "2020-02-29"
 output:
   xaringan::moon_reader:
+#    chakra: 'libs/remark-latest.min.js'
     lib_dir: libs
     css: [default, metropolis, metropolis-fonts, custom.css]
     nature:
@@ -53,7 +54,7 @@ import pprint
 
 
 ---
-
+name: visinum
 class: notitletop
 
 <a href="https://github.com/qwilka/metadata-manager-2015">
@@ -808,7 +809,7 @@ sys.exit(app.exec_())
 
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/QTreeWidget_basic.py
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/QTreeWidget_OO.py
-
+1. https://www.riverbankcomputing.com/static/Docs/PyQt5/
 
 ---
 
@@ -851,7 +852,8 @@ sys.exit(app.exec_())
 ### References, links
 
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/QTreeView_example.py
-
+1. Yasin Uludag tutorial Series on PyQt4 MVC https://www.youtube.com/view_play_list?p=8B63F2091D787896   
+1. https://doc.qt.io/qt-5/model-view-programming.html
 
 ---
 
@@ -959,6 +961,112 @@ $ python decision_tree.py
 1. https://github.com/Toblerity/Rtree  Toblerity project 
 1. https://github.com/mourner/rbush  Vladimir Agafonkin
 1. https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html
+
+
+---
+
+# Data management and analysis
+
+.pull-left[
+* vntree.mongo.MongoNode
+  * tree stored in MongoDB
+  * each node is a db document
+  * used in [Visinum](#visinum) data platform
+
+{{content}}
+]
+
+--
+
+* `pflacs` Python module
+  * faster loadcases and parameter studies
+  * Python functions patched into object structures
+  * vntree based classes
+  * `pflacs.Premise` nodes for grouping data attributes
+  * `pflacs.Calc` nodes for computations
+
+--
+
+.pull-right[
+```python
+| Pflacs oil&gas field, subsea
++--| P-01 gas pipeline
+.  +--| P-01 pipeline section 1, KP 0-0.3
+.  .  +--| Calc: pipe properties
+.  .  .  | Calc: pressure containment
+.  .  .  | Calc: pipe collapse
+.  .  | P-01 pipeline section 3, KP 15-79.7
+.  .  +--| Calc: pipe properties
+.  .  .  | Calc: pressure containment
+.  .  .  | Calc: pipe collapse
+.  | P-07 oil pipeline
+.  +--| P-07 pipeline section 1, KP 0-1.5
+.  .  +--| Calc: pipe properties
+.  .  .  | Calc: pressure containment
+.  .  .  | Calc: pipe collapse
+.  .  | P-07 pipeline section 2, KP 1.5-6.9
+.  .  +--| Calc: pipe properties
+.  .  .  | Calc: pressure containment
+.  .  .  | Calc: pipe collapse
+```
+]
+
+
+???
+
+### References, links
+
+1. https://github.com/qwilka/pflacs
+1. pflacs at PyCon Ireland 2019 https://qwilka.github.io/talk/2019-10-12_pycon2019/
+1. Visinum https://qwilka.github.io/
+
+
+---
+
+# in conclusion
+
+--
+
+.pull-left[
+* Tree data structures are an effective way to organise data in applications
+{{content}}
+]
+
+--
+
+* Many ways to create trees in Python
+  * `Node` based trees are canonical form
+
+{{content}}
+
+--
+
+* `vntree` is a Python module providing a `Node` based tree
+
+
+--
+
+.pull-right[
+```python
+rootnode.show()
+
+| The World
++--| Europe
+.  +--| Belgium
+.  .  | Greece
+.  .  | Scandinavia
+.  .  +--| Denmark
+.  .  .  +--| Faroe Islands
+.  .  .  .  | Greenland
+.  .  .  | Sweden
+.  .  .  | Norway
+.  .  .  | Iceland
+.  .  .  | Finland
+.  .  | Spain
+.  | South America
+.  +--| Chile
+```
+]
 
 ---
 class: middle, center, notitletop

@@ -51,7 +51,7 @@ class: top, left, title-slide
 
 
 ---
-
+name: visinum
 class: notitletop
 
 &lt;a href="https://github.com/qwilka/metadata-manager-2015"&gt;
@@ -303,7 +303,7 @@ class LLnode:
 &gt;&gt;&gt; sec = LLnode('Second Node', first)
 &gt;&gt;&gt; third = LLnode(3, sec)
 &gt;&gt;&gt; third.append( LLnode(4.0, None) )
-&lt;examples.linked_list.LLnode object at 0x7fa7a6125f90&gt;
+&lt;examples.linked_list.LLnode object at 0x7fcba883fe10&gt;
 ```
 {{content}}
 ]
@@ -352,7 +352,7 @@ $ python linked_list.py
 ```python
 &gt;&gt;&gt; root = LLnode('Stephen Dedalus', None)
 &gt;&gt;&gt; root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')).append(LLnode('Sallins')).append(LLnode('County Kildare')).append(LLnode('Ireland')).append(LLnode('Europe')).append(LLnode('The World')).append(LLnode('The Universe'))
-&lt;examples.linked_list.LLnode object at 0x7fa7a60b1810&gt;
+&lt;examples.linked_list.LLnode object at 0x7fcba88563d0&gt;
 ```
 
 --
@@ -423,7 +423,7 @@ class Node:
 &gt;&gt;&gt; child1 = Node('First child', root)
 &gt;&gt;&gt; child2 = Node('2nd child', root, {"n":123})
 &gt;&gt;&gt; child1.add_child( Node("grand-child", None, {}) )
-&lt;vntree.node.Node object at 0x7fa7a60b4950&gt;
+&lt;vntree.node.Node object at 0x7fcba88158d0&gt;
 ```
 {{content}}
 ]
@@ -871,7 +871,7 @@ sys.exit(app.exec_())
 
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/QTreeWidget_basic.py
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/QTreeWidget_OO.py
-
+1. https://www.riverbankcomputing.com/static/Docs/PyQt5/
 
 ---
 
@@ -914,7 +914,8 @@ sys.exit(app.exec_())
 ### References, links
 
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/PyQt/QTreeView_example.py
-
+1. Yasin Uludag tutorial Series on PyQt4 MVC https://www.youtube.com/view_play_list?p=8B63F2091D787896   
+1. https://doc.qt.io/qt-5/model-view-programming.html
 
 ---
 
@@ -1008,9 +1009,6 @@ $ python decision_tree.py
 ]
 
 
-
-
-
 ???
 
 ### References, links
@@ -1025,6 +1023,112 @@ $ python decision_tree.py
 1. https://github.com/Toblerity/Rtree  Toblerity project 
 1. https://github.com/mourner/rbush  Vladimir Agafonkin
 1. https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html
+
+
+---
+
+# Data management and analysis
+
+.pull-left[
+* vntree.mongo.MongoNode
+  * tree stored in MongoDB
+  * each node is a db document
+  * used in [Visinum](#visinum) data platform
+
+{{content}}
+]
+
+--
+
+* `pflacs` Python module
+  * faster loadcases and parameter studies
+  * Python functions patched into object structures
+  * vntree based classes
+  * `pflacs.Premise` nodes for grouping data attributes
+  * `pflacs.Calc` nodes for computations
+
+--
+
+.pull-right[
+```python
+| Pflacs oil&amp;gas field, subsea
++--| P-01 gas pipeline
+.  +--| P-01 pipeline section 1, KP 0-0.3
+.  .  +--| Calc: pipe properties
+.  .  .  | Calc: pressure containment
+.  .  .  | Calc: pipe collapse
+.  .  | P-01 pipeline section 3, KP 15-79.7
+.  .  +--| Calc: pipe properties
+.  .  .  | Calc: pressure containment
+.  .  .  | Calc: pipe collapse
+.  | P-07 oil pipeline
+.  +--| P-07 pipeline section 1, KP 0-1.5
+.  .  +--| Calc: pipe properties
+.  .  .  | Calc: pressure containment
+.  .  .  | Calc: pipe collapse
+.  .  | P-07 pipeline section 2, KP 1.5-6.9
+.  .  +--| Calc: pipe properties
+.  .  .  | Calc: pressure containment
+.  .  .  | Calc: pipe collapse
+```
+]
+
+
+???
+
+### References, links
+
+1. https://github.com/qwilka/pflacs
+1. pflacs at PyCon Ireland 2019 https://qwilka.github.io/talk/2019-10-12_pycon2019/
+1. Visinum https://qwilka.github.io/
+
+
+---
+
+# Conclusion
+
+--
+
+.pull-left[
+* Tree data structures are an effective way to organise data in applications
+{{content}}
+]
+
+--
+
+* Many ways to create trees in Python
+  * `Node` based trees are canonical form
+  
+{{content}}
+
+--
+
+* `vntree` is a Python module providing a `Node` based tree
+
+
+--
+
+.pull-right[
+```python
+rootnode.show()
+
+| The World
++--| Europe
+.  +--| Belgium
+.  .  | Greece
+.  .  | Scandinavia
+.  .  +--| Denmark
+.  .  .  +--| Faroe Islands
+.  .  .  .  | Greenland
+.  .  .  | Sweden
+.  .  .  | Norway
+.  .  .  | Iceland
+.  .  .  | Finland
+.  .  | Spain
+.  | South America
+.  +--| Chile
+```
+]
 
 ---
 class: middle, center, notitletop
