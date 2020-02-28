@@ -308,6 +308,76 @@ $ python list_tree_with_data.py
 
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/list_tree_with_data.py
 
+
+---
+
+# One Line Tree
+
+.pull-left[
+```python
+from collections import defaultdict
+
+*def tree(): return defaultdict(tree)
+
+root = tree()
+root["The World"]
+root["The World"]["population"] = 7762609412
+root["The World"]["Europe"]
+root["The World"]["Europe"]["Scandinavia"]
+root["The World"]["Europe"]["Scandinavia"]["Denmark"]
+root["The World"]["Europe"]["Scandinavia"]["Denmark"]["population"] = 5792202
+root["The World"]["Europe"]["Scandinavia"]["Sweden"]
+root["The World"]["Europe"]["Scandinavia"]["Sweden"]["population"] = 10099265
+root["The World"]["North America"]
+root["The World"]["North America"]["Canada"]
+root["The World"]["North America"]["Canada"]["population"] = 37742154
+
+import json
+print(json.dumps(root, indent=2))
+```
+]
+
+
+--
+
+.pull-right[
+
+```
+{
+  "The World": {
+    "population": 7762609412,
+    "Europe": {
+      "Scandinavia": {
+        "Denmark": {
+          "population": 5792202
+        },
+        "Sweden": {
+          "population": 10099265
+        }
+      }
+    },
+    "North America": {
+      "Canada": {
+        "population": 37742154
+      }
+    }
+  }
+}
+```
+]
+
+???
+
+$ python one_line_tree.py
+
+### References, links
+
+1. GitHub Gist [hrldcpr/tree.md](https://gist.github.com/hrldcpr/2012250) «One-line Tree in Python»
+1. [Jeff Khupp 2013 article](https://jeffknupp.com/blog/2013/02/14/drastically-improve-your-python-understanding-pythons-execution-model/) describes a similar "auto-vivifying dictionary that operates like a trie"
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/one_line_tree.py
+
+
+
 ---
 
 # A linked list in Python
@@ -346,7 +416,7 @@ class LLnode:
 &gt;&gt;&gt; sec = LLnode('Second Node', first)
 &gt;&gt;&gt; third = LLnode(3, sec)
 &gt;&gt;&gt; third.append( LLnode(4.0, None) )
-&lt;examples.linked_list.LLnode object at 0x7f361909cfd0&gt;
+&lt;examples.linked_list.LLnode object at 0x7f3619046610&gt;
 ```
 {{content}}
 ]
@@ -395,7 +465,7 @@ $ python linked_list.py
 ```python
 &gt;&gt;&gt; root = LLnode('Stephen Dedalus', None)
 &gt;&gt;&gt; root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')).append(LLnode('Sallins')).append(LLnode('County Kildare')).append(LLnode('Ireland')).append(LLnode('Europe')).append(LLnode('The World')).append(LLnode('The Universe'))
-&lt;examples.linked_list.LLnode object at 0x7f361902a690&gt;
+&lt;examples.linked_list.LLnode object at 0x7f361906ee10&gt;
 ```
 
 --
@@ -466,7 +536,7 @@ class Node:
 &gt;&gt;&gt; child1 = Node('First child', root)
 &gt;&gt;&gt; child2 = Node('2nd child', root, {"n":123})
 &gt;&gt;&gt; child1.add_child( Node("grand-child", None, {}) )
-&lt;vntree.node.Node object at 0x7f3619029890&gt;
+&lt;vntree.node.Node object at 0x7f3619041050&gt;
 ```
 {{content}}
 ]
@@ -507,70 +577,44 @@ grand-child
 
 ---
 
-# One Line Tree
+# Node class \_\_iter\_\_ method
 
-.pull-left[
 ```python
-from collections import defaultdict
+import itertools
 
-*def tree(): return defaultdict(tree)
+class Node:
+  ...
 
-root = tree()
-root["The World"]
-root["The World"]["population"] = 7762609412
-root["The World"]["Europe"]
-root["The World"]["Europe"]["Scandinavia"]
-root["The World"]["Europe"]["Scandinavia"]["Denmark"]
-root["The World"]["Europe"]["Scandinavia"]["Denmark"]["population"] = 5792202
-root["The World"]["Europe"]["Scandinavia"]["Sweden"]
-root["The World"]["Europe"]["Scandinavia"]["Sweden"]["population"] = 10099265
-root["The World"]["North America"]
-root["The World"]["North America"]["Canada"]
-root["The World"]["North America"]["Canada"]["population"] = 37742154
-
-import json
-print(json.dumps(root, indent=2))
+  def __iter__(self): 
+      yield self  
+      for node in itertools.chain(*map(iter, self.children)):
+          yield node 
 ```
-]
-
 
 --
 
-.pull-right[
+```python
+$ python examples/simple_tree.py topdown
 
+:self: «The World»
+Node «The World» level=0 coord=()
+:self: «Europe»
+:0: «Europe» «The World»
+Node «Europe» level=1 coord=(0,)
+:self: «Belgium»
+:0: «Belgium» «Europe»
+:1: «Belgium» «The World»
+Node «Belgium» level=2 coord=(0, 0)
+:self: «Greece»
+:1: «Greece» «Europe»
+:2: «Greece» «The World»
+Node «Greece» level=2 coord=(0, 1)
+:self: «Scandinavia»
 ```
-{
-  "The World": {
-    "population": 7762609412,
-    "Europe": {
-      "Scandinavia": {
-        "Denmark": {
-          "population": 5792202
-        },
-        "Sweden": {
-          "population": 10099265
-        }
-      }
-    },
-    "North America": {
-      "Canada": {
-        "population": 37742154
-      }
-    }
-  }
-}
-```
-]
 
 ???
 
-$ python one_line_tree.py
-
-### References, links
-
-1. GitHub Gist [hrldcpr/tree.md](https://gist.github.com/hrldcpr/2012250) «One-line Tree in Python»
-1. [Jeff Khupp 2013 article](https://jeffknupp.com/blog/2013/02/14/drastically-improve-your-python-understanding-pythons-execution-model/) describes a similar "auto-vivifying dictionary that operates like a trie"
-1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/one_line_tree.py
+$ python simple_tree.py topdown
 
 
 ---

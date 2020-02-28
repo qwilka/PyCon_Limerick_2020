@@ -302,6 +302,56 @@ $ python list_tree_with_data.py
 
 1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/list_tree_with_data.py
 
+
+---
+
+# One Line Tree
+
+.pull-left[
+```python
+from collections import defaultdict
+
+*def tree(): return defaultdict(tree)
+
+root = tree()
+root["The World"]
+root["The World"]["population"] = 7762609412
+root["The World"]["Europe"]
+root["The World"]["Europe"]["Scandinavia"]
+root["The World"]["Europe"]["Scandinavia"]["Denmark"]
+root["The World"]["Europe"]["Scandinavia"]["Denmark"]["population"] = 5792202
+root["The World"]["Europe"]["Scandinavia"]["Sweden"]
+root["The World"]["Europe"]["Scandinavia"]["Sweden"]["population"] = 10099265
+root["The World"]["North America"]
+root["The World"]["North America"]["Canada"]
+root["The World"]["North America"]["Canada"]["population"] = 37742154
+
+import json
+print(json.dumps(root, indent=2))
+```
+]
+
+
+--
+
+.pull-right[
+```{python, echo=FALSE, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+show_onelinetree_example()
+```
+]
+
+???
+
+$ python one_line_tree.py
+
+### References, links
+
+1. GitHub Gist [hrldcpr/tree.md](https://gist.github.com/hrldcpr/2012250) «One-line Tree in Python»
+1. [Jeff Khupp 2013 article](https://jeffknupp.com/blog/2013/02/14/drastically-improve-your-python-understanding-pythons-execution-model/) describes a similar "auto-vivifying dictionary that operates like a trie"
+1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/one_line_tree.py
+
+
+
 ---
 
 # A linked list in Python
@@ -465,50 +515,44 @@ for node in root:
 
 ---
 
-# One Line Tree
+# Node class \_\_iter\_\_ method
 
-.pull-left[
 ```python
-from collections import defaultdict
+import itertools
 
-*def tree(): return defaultdict(tree)
+class Node:
+  ...
 
-root = tree()
-root["The World"]
-root["The World"]["population"] = 7762609412
-root["The World"]["Europe"]
-root["The World"]["Europe"]["Scandinavia"]
-root["The World"]["Europe"]["Scandinavia"]["Denmark"]
-root["The World"]["Europe"]["Scandinavia"]["Denmark"]["population"] = 5792202
-root["The World"]["Europe"]["Scandinavia"]["Sweden"]
-root["The World"]["Europe"]["Scandinavia"]["Sweden"]["population"] = 10099265
-root["The World"]["North America"]
-root["The World"]["North America"]["Canada"]
-root["The World"]["North America"]["Canada"]["population"] = 37742154
-
-import json
-print(json.dumps(root, indent=2))
+  def __iter__(self): 
+      yield self  
+      for node in itertools.chain(*map(iter, self.children)):
+          yield node 
 ```
-]
-
 
 --
 
-.pull-right[
-```{python, echo=FALSE, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-show_onelinetree_example()
+```python
+$ python examples/simple_tree.py topdown
+
+:self: «The World»
+Node «The World» level=0 coord=()
+:self: «Europe»
+:0: «Europe» «The World»
+Node «Europe» level=1 coord=(0,)
+:self: «Belgium»
+:0: «Belgium» «Europe»
+:1: «Belgium» «The World»
+Node «Belgium» level=2 coord=(0, 0)
+:self: «Greece»
+:1: «Greece» «Europe»
+:2: «Greece» «The World»
+Node «Greece» level=2 coord=(0, 1)
+:self: «Scandinavia»
 ```
-]
 
 ???
 
-$ python one_line_tree.py
-
-### References, links
-
-1. GitHub Gist [hrldcpr/tree.md](https://gist.github.com/hrldcpr/2012250) «One-line Tree in Python»
-1. [Jeff Khupp 2013 article](https://jeffknupp.com/blog/2013/02/14/drastically-improve-your-python-understanding-pythons-execution-model/) describes a similar "auto-vivifying dictionary that operates like a trie"
-1. https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/one_line_tree.py
+$ python simple_tree.py topdown
 
 
 ---
