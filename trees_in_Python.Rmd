@@ -91,9 +91,15 @@ With some lower-level details in Python.
 
 * Link to slides https://qwilka.github.io/PyCon_Limerick_2020/ 
 * The slides are created with [xaringan](https://slides.yihui.org/xaringan).
+  * Press **h** for slides help.
+
+### Resources
+
+* GitHub repository with example code:
+  * https://github.com/qwilka/PyCon_Limerick_2020
 * Links to resources, references, source code, etc., are in the presentation speaker notes.
   * Press **p** to see speaker notes.
-  * Press **h** for slides help.
+
 
 ???
 
@@ -125,14 +131,11 @@ With some lower-level details in Python.
 ???
 
 * a lot of data falls naturally into a hierarchical tree structure.
-
   * countries and states
   * Organizational charts - organograms https://en.wikipedia.org/wiki/Organizational_chart
-
-
-Even data that isn't naturally hierarchical can be transformed into a hierarchy.
-
-social and political structures
+* Even data that isn't naturally hierarchical can be transformed into a hierarchy.
+  * social and political structures
+  * family tree
 
 ### References, links
 
@@ -509,8 +512,8 @@ for node in root:
 
 ### References, links
 
-1. [Linked list](https://en.wikipedia.org/wiki/Linked_list) article on Wikipedia.
-1. [linked_list.py](https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/linked_list.py) source code on Github.
+1. [Tree](https://en.wikipedia.org/wiki/Tree_%28data_structure%29) article on Wikipedia.
+1. [simple_tree.py](https://github.com/qwilka/PyCon_Limerick_2020/blob/master/examples/simple_tree.py) source code on Github.
 
 
 ---
