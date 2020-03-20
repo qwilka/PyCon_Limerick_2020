@@ -130,7 +130,7 @@ With some lower-level details in Python.
 * a lot of data falls naturally into a hierarchical tree structure.
   * countries and states
   * Organizational charts - organograms https://en.wikipedia.org/wiki/Organizational_chart
-* Even data that isn't naturally hierarchical can be transformed into a hierarchy.
+* Even data that isn't fully *tree*-compliant can be transformed into a tree structure:
   * social and political structures
   * family tree
 
@@ -419,7 +419,7 @@ class LLnode:
 &gt;&gt;&gt; sec = LLnode('Second Node', first)
 &gt;&gt;&gt; third = LLnode(3, sec)
 &gt;&gt;&gt; third.append( LLnode(4.0, None) )
-&lt;examples.linked_list.LLnode object at 0x7f6aa0ab2150&gt;
+&lt;examples.linked_list.LLnode object at 0x7f6d1ce85cd0&gt;
 ```
 {{content}}
 ]
@@ -468,7 +468,7 @@ $ python linked_list.py
 ```python
 &gt;&gt;&gt; root = LLnode('Stephen Dedalus', None)
 &gt;&gt;&gt; root.append(LLnode('Class of Elements')).append(LLnode('Clongowes Wood College')).append(LLnode('Sallins')).append(LLnode('County Kildare')).append(LLnode('Ireland')).append(LLnode('Europe')).append(LLnode('The World')).append(LLnode('The Universe'))
-&lt;examples.linked_list.LLnode object at 0x7f6aa0ac2f90&gt;
+&lt;examples.linked_list.LLnode object at 0x7f6d1ce95f10&gt;
 ```
 
 --
@@ -539,7 +539,7 @@ class Node:
 &gt;&gt;&gt; child1 = Node('First child', root)
 &gt;&gt;&gt; child2 = Node('2nd child', root, {"n":123})
 &gt;&gt;&gt; child1.add_child( Node("grand-child", None, {}) )
-&lt;vntree.node.Node object at 0x7f6aa0aaeed0&gt;
+&lt;vntree.node.Node object at 0x7f6d1ce7b710&gt;
 ```
 {{content}}
 ]

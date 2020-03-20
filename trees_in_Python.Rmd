@@ -133,7 +133,7 @@ With some lower-level details in Python.
 * a lot of data falls naturally into a hierarchical tree structure.
   * countries and states
   * Organizational charts - organograms https://en.wikipedia.org/wiki/Organizational_chart
-* Even data that isn't naturally hierarchical can be transformed into a hierarchy.
+* Even data that isn't fully *tree*-compliant can be transformed into a tree structure:
   * social and political structures
   * family tree
 
